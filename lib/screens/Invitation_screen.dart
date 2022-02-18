@@ -212,43 +212,45 @@ class _InvitationScreenState extends State<InvitationScreen> {
                   ],
                 ),
               ),
-              const Gap(16),
+              const Gap(8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
                   "My Invitations",
                   style: Widgets().textStyle(14, const Color(0xff7A7A7A),
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               const Gap(8),
               Flexible(
                 child: Scrollbar(
-                  child: GridView.builder(
-                    physics: const ScrollPhysics(),
-                    padding: const EdgeInsets.only(
-                        left: 12, right: 12, bottom: 16, top: 0),
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: invitations.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisExtent: 120,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 4,
-                      mainAxisSpacing: 4,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      DateTime date = invitations[index]["date"];
+                  radius: const Radius.circular(10),
+                  child: SingleChildScrollView(
+                    child: GridView.builder(
+                      physics: const ScrollPhysics(),
+                      padding: const EdgeInsets.only(
+                          left: 12, right: 12, bottom: 16, top: 0),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: invitations.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisExtent: 140,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 4,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        DateTime date = invitations[index]["date"];
 
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffC2D1E4),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Stack(
-                          children: [
-                            Align(
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xffC2D1E4),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Stack(
+                            children: [
+                              Align(
                                 alignment: Alignment.topRight,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -257,8 +259,10 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      const Icon(MdiIcons.mapMarkerCheck,
-                                          color: Color(0xffA90641)),
+                                      const Icon(
+                                        MdiIcons.mapMarkerCheck,
+                                        color: Color(0xffA90641),
+                                      ),
                                       Text(
                                         invitations[index]["location"],
                                         style: Widgets().textStyle(
@@ -267,8 +271,9 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                       )
                                     ],
                                   ),
-                                )),
-                            Align(
+                                ),
+                              ),
+                              Align(
                                 alignment: Alignment.topLeft,
                                 child: Padding(
                                   padding:
@@ -277,11 +282,12 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 1, horizontal: 8),
                                     decoration: const BoxDecoration(
-                                        color: Color(0xff1C9DB6),
-                                        borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(15),
-                                          topRight: Radius.circular(15),
-                                        )),
+                                      color: Color(0xff1C9DB6),
+                                      borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(15),
+                                        topRight: Radius.circular(15),
+                                      ),
+                                    ),
                                     child: Text(
                                       Jiffy(date).MMMd,
                                       style: Widgets().textStyle(
@@ -289,49 +295,57 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                           fontWeight: FontWeight.w500),
                                     ),
                                   ),
-                                )),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                invitations[index]["to"]
-                                    .toString()
-                                    .toUpperCase(),
-                                style: Widgets().textStyle(16, Colors.black,
-                                    fontWeight: FontWeight.w500),
+                                ),
                               ),
-                            ),
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4, horizontal: 8),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff1C9DB6),
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                      child: Text(
-                                        "Tab for more details",
-                                        style: Widgets().textStyle(
-                                            12, Colors.white,
-                                            fontWeight: FontWeight.w500),
-                                        textAlign: TextAlign.center,
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  invitations[index]["to"]
+                                      .toString()
+                                      .toUpperCase(),
+                                  style: Widgets().textStyle(16, Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4, horizontal: 8),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff1C9DB6),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Text(
+                                          "Tab for more details",
+                                          style: Widgets().textStyle(
+                                              12, Colors.white,
+                                              fontWeight: FontWeight.w500),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                )),
-                          ],
-                        ),
-                      );
-                    },
+                                  )),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
             ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.add, size: 35),
+            backgroundColor: const Color(0xff2A7B4F),
           ),
         ),
         borderRadius: BorderRadius.circular(15),
