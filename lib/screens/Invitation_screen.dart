@@ -11,8 +11,131 @@ class InvitationScreen extends StatefulWidget {
 class _InvitationScreenState extends State<InvitationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: Widgets().appbar(),
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      padding: const EdgeInsets.fromLTRB(8, 54, 8, 8),
+      child: ClipRRect(
+        child: Scaffold(
+            backgroundColor: Theme.of(context).backgroundColor,
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.all(12),
+                    // padding:
+                    //     const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xffDFE6E8),
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset:
+                              const Offset(0, 0), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12,12,12,0),
+                          child: Row(
+                            children: [
+                              // Gap(12),
+                              Container(
+                                child: const CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                      "assets/images/dash_manager.png"),
+                                  radius: 50,
+                                  backgroundColor: Color(0xffDFE6E8),
+                                ),
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0xff19879C)
+                                          .withOpacity(0.3),
+                                      spreadRadius: 2,
+                                      blurRadius: 2,
+                                      offset: const Offset(
+                                          0, 0), // changes position of shadow
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                              ),
+                              const Gap(10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Welcome, Dash!",
+                                    style: Widgets().textStyle(22, Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const Gap(2.5),
+                                  Text("You Can Manage Your invitation now!",
+                                      style: Widgets().textStyle(
+                                          12, const Color(0xff4B2A2A), fontWeight: FontWeight.w500)),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        const Gap(20),
+                        Padding(
+                         padding: const EdgeInsets.fromLTRB(24,0,12,12),
+                          child: Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 25,
+                                    width: 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xffB9D800),
+                                    ),
+                                  ),
+                                  const Gap(5),
+                                  Text("12 Visited You Done",
+                                      style: Widgets().textStyle(
+                                          12, const Color(0xff96A922),  fontWeight: FontWeight.w500)),
+                                ],
+                              ),
+                              const Spacer(),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 25,
+                                    width: 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xffA90641),
+                                    ),
+                                  ),
+                                  const Gap(5),
+                                  Text("10 Invitation Created",
+                                      style: Widgets().textStyle(
+                                          12, const Color(0xffB15C7B),fontWeight: FontWeight.w500)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                ),
+                Text("My Invitations"),
+                Text("My Invitations"),
+                Text("My Invitations"),
+                Text("My Invitations"),
+              ],
+            )),
+        borderRadius: BorderRadius.circular(15),
+      ),
     );
   }
 }

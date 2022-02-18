@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Invitation App',
+      title: 'Invitations Manager App',
       theme: AppTheme.appTheme(),
       home: const InvitationScreen(),
     );

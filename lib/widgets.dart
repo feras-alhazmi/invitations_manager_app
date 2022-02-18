@@ -17,12 +17,13 @@ class Widgets{
   }
 
 
-  TextStyle textStyle(double fontSize, Color color){
+  TextStyle textStyle(double fontSize, Color color, {FontWeight? fontWeight}){
 
 
     return GoogleFonts.ubuntu(
       color: color,
       fontSize: fontSize,
+      fontWeight: fontWeight,
     );
   }
 
