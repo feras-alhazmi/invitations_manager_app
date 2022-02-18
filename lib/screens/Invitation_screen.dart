@@ -24,7 +24,71 @@ class _InvitationScreenState extends State<InvitationScreen> {
       "location": "riyadh",
       "date": DateTime(2022, 11, 24),
       "content":
-      "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "Ahmed",
+      "location": "Abha",
+      "date": DateTime(2022, 03, 12),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "SARA",
+      "location": "riyadh",
+      "date": DateTime(2022, 11, 24),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "Ahmed",
+      "location": "Abha",
+      "date": DateTime(2022, 03, 12),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "SARA",
+      "location": "riyadh",
+      "date": DateTime(2022, 11, 24),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "Ahmed",
+      "location": "Abha",
+      "date": DateTime(2022, 03, 12),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "SARA",
+      "location": "riyadh",
+      "date": DateTime(2022, 11, 24),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "Ahmed",
+      "location": "Abha",
+      "date": DateTime(2022, 03, 12),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
+    {
+      "to": "SARA",
+      "location": "riyadh",
+      "date": DateTime(2022, 11, 24),
+      "content":
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
       "regards": "Your friend Dash!\nBest regards",
     },
   ];
@@ -163,9 +227,9 @@ class _InvitationScreenState extends State<InvitationScreen> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: GridView.builder(
-                        physics: ScrollPhysics(),
+                        physics: const ScrollPhysics(),
                         padding: const EdgeInsets.only(
-                            left: 16, right: 16, bottom: 16, top: 12),
+                            left: 12, right: 12, bottom: 16, top: 12),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: invitations.length,
@@ -192,11 +256,13 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8, vertical: 4),
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          // Icon(Icons.fifteen_mp_rounded),
-                                          const FaIcon(Icons.map),
+                                          const Icon(MdiIcons.mapMarkerCheck,
+                                              color: Color(0xffA90641)),
                                           Text(
-                                              invitations[index]["location"],
+                                            invitations[index]["location"],
                                             style: Widgets().textStyle(
                                                 12, const Color(0xff7A7A7A),
                                                 fontWeight: FontWeight.w500),
