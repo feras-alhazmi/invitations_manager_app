@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Invitations Manager App',
       theme: AppTheme.appTheme(),
+      debugShowCheckedModeBanner: false,
       home: const InvitationScreen(),
     );
   }
