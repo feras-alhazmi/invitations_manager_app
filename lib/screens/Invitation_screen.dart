@@ -16,7 +16,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
       "location": "Abha",
       "date": DateTime(2022, 03, 12),
       "content":
-      "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+          "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
       "regards": "Your friend Dash!\nBest regards",
     }
   ];
@@ -24,15 +24,11 @@ class _InvitationScreenState extends State<InvitationScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme
-          .of(context)
-          .scaffoldBackgroundColor,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.fromLTRB(8, 54, 8, 8),
       child: ClipRRect(
         child: Scaffold(
-          backgroundColor: Theme
-              .of(context)
-              .backgroundColor,
+          backgroundColor: Theme.of(context).backgroundColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +59,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                           Container(
                             child: const CircleAvatar(
                               backgroundImage:
-                              AssetImage("assets/images/dash_manager.png"),
+                                  AssetImage("assets/images/dash_manager.png"),
                               radius: 50,
                               backgroundColor: Color(0xffDFE6E8),
                             ),
@@ -71,7 +67,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                               boxShadow: [
                                 BoxShadow(
                                   color:
-                                  const Color(0xff19879C).withOpacity(0.3),
+                                      const Color(0xff19879C).withOpacity(0.3),
                                   spreadRadius: 2,
                                   blurRadius: 2,
                                   offset: const Offset(
@@ -161,20 +157,19 @@ class _InvitationScreenState extends State<InvitationScreen> {
                       alignment: Alignment.topCenter,
                       child: GridView.builder(
                         physics: ScrollPhysics(),
-                        padding:
-                        const EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 16, right: 16, bottom: 16, top: 40),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: invitations.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           mainAxisExtent: 120,
                           crossAxisCount: 2,
                           crossAxisSpacing: 4,
                           mainAxisSpacing: 4,
                         ),
                         itemBuilder: (BuildContext context, int index) {
-
                           DateTime date = invitations[index]["date"];
 
                           return Container(
@@ -183,85 +178,86 @@ class _InvitationScreenState extends State<InvitationScreen> {
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Stack(
-                                children: [
+                              children: [
                                 Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  child: Column(
-                                    children: [
-                                      // Icon(Icons.fifteen_mp_rounded),
-                                      const FaIcon(Icons.map),
-                                      Text(
-                                        "Abha",
-                                        style: Widgets().textStyle(
-                                            12, const Color(0xff7A7A7A),
-                                            fontWeight: FontWeight.w500),
-                                      )
-                                    ],
-                                  ),
-                                )
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15),
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 4),
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xff1C9DB6),
-                                        borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(15),
-                                          topRight: Radius.circular(15),)
-                                    ),
-                                    child: Text(
-                                      Jiffy(date).MMMd,
-                                      style: Widgets().textStyle(
-                                          14,  Colors.white,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                )
-
-                          ),
-
-
-                            Align(
-                              alignment: Alignment.center,
-                              child:  Text(
-                                invitations[index]["to"].toString().toUpperCase(),
-                                style: Widgets().textStyle(16,  Colors.black,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-
-                                  Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child:  Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 8),
+                                    alignment: Alignment.topRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      child: Column(
+                                        children: [
+                                          // Icon(Icons.fifteen_mp_rounded),
+                                          const FaIcon(Icons.map),
+                                          Text(
+                                            "Abha",
+                                            style: Widgets().textStyle(
+                                                12, const Color(0xff7A7A7A),
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                                Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15),
                                       child: Container(
-                                        padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-                                        decoration:  BoxDecoration(
-                                          color:const Color(0xff1C9DB6),
-                                          borderRadius:  BorderRadius.circular(16),
-                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 1, horizontal: 8),
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xff1C9DB6),
+                                            borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(15),
+                                              topRight: Radius.circular(15),
+                                            )),
                                         child: Text(
-                                          "Tab for more details",
+                                          Jiffy(date).MMMd,
                                           style: Widgets().textStyle(
-                                              14,  Colors.white,
+                                              12, Colors.white,
                                               fontWeight: FontWeight.w500),
                                         ),
                                       ),
-                                    )
+                                    )),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    invitations[index]["to"]
+                                        .toString()
+                                        .toUpperCase(),
+                                    style: Widgets().textStyle(16, Colors.black,
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                ],
-                          )
-                          ,
+                                ),
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 8),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff1C9DB6),
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                          ),
+                                          child: Text(
+                                            "Tab for more details",
+                                            style: Widgets().textStyle(
+                                                12, Colors.white,
+                                                fontWeight: FontWeight.w500),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    )),
+                              ],
+                            ),
                           );
                         },
-
                       ),
                     ),
                   ),
