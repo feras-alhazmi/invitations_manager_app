@@ -18,7 +18,15 @@ class _InvitationScreenState extends State<InvitationScreen> {
       "content":
           "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
       "regards": "Your friend Dash!\nBest regards",
-    }
+    },
+    {
+      "to": "SARA",
+      "location": "riyadh",
+      "date": DateTime(2022, 11, 24),
+      "content":
+      "Dear Ahmed,\nI hope you doing well\nit’s a pleasure to meet you on 25-Feb in Abha city",
+      "regards": "Your friend Dash!\nBest regards",
+    },
   ];
 
   @override
@@ -35,8 +43,6 @@ class _InvitationScreenState extends State<InvitationScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.all(12),
-                // padding:
-                //     const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                   color: const Color(0xffDFE6E8),
                   borderRadius: BorderRadius.circular(15),
@@ -142,6 +148,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                   ],
                 ),
               ),
+              const Gap(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
@@ -158,7 +165,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                       child: GridView.builder(
                         physics: ScrollPhysics(),
                         padding: const EdgeInsets.only(
-                            left: 16, right: 16, bottom: 16, top: 40),
+                            left: 16, right: 16, bottom: 16, top: 12),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: invitations.length,
@@ -189,7 +196,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                           // Icon(Icons.fifteen_mp_rounded),
                                           const FaIcon(Icons.map),
                                           Text(
-                                            "Abha",
+                                              invitations[index]["location"],
                                             style: Widgets().textStyle(
                                                 12, const Color(0xff7A7A7A),
                                                 fontWeight: FontWeight.w500),
