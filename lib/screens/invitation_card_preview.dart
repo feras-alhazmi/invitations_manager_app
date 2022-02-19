@@ -1,16 +1,16 @@
 import '../exports.dart';
 
-class InvitationCardPerview extends StatefulWidget {
+class InvitationCardPreview extends StatefulWidget {
   final Map<String,dynamic> invitation;
 
 
-  const InvitationCardPerview( this.invitation,{Key? key}) : super(key: key);
+  const InvitationCardPreview( this.invitation,{Key? key}) : super(key: key);
 
   @override
-  _InvitationCardPerviewState createState() => _InvitationCardPerviewState();
+  _InvitationCardPreviewState createState() => _InvitationCardPreviewState();
 }
 
-class _InvitationCardPerviewState extends State<InvitationCardPerview> {
+class _InvitationCardPreviewState extends State<InvitationCardPreview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,4 +1,4 @@
-import 'package:dash_invitation_app/screens/invitation_card_perview.dart';
+import 'package:dash_invitation_app/screens/invitation_card_preview.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 import '../exports.dart';
@@ -838,7 +838,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                             });
                                           } else {
                                             Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                                              return InvitationCardPerview(
+                                              return InvitationCardPreview(
                                                   {
                                                     "name" : inviteeNameController.text,
                                                     "content" : contentController.text,
