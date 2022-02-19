@@ -1,3 +1,4 @@
+import 'package:dash_invitation_app/screens/invitation_card_perview.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 import '../exports.dart';
@@ -836,7 +837,16 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                               regardsValidate = true;
                                             });
                                           } else {
-                                            continued();
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                                              return InvitationCardPerview(
+                                                  {
+                                                    "name" : inviteeNameController.text,
+                                                    "content" : contentController.text,
+                                                    "place" : locationController.text,
+                                                    "date" : newDateTime,
+                                                    "regards" : regardsController.text,
+                                                  });
+                                            }));
                                           }
                                         },
                                       ),
@@ -857,7 +867,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: IconButton(
                   icon: const Icon(
                     Icons.close,
