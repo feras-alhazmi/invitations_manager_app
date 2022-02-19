@@ -1,3 +1,5 @@
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+
 import '../exports.dart';
 
 class NewInvitationWidget extends StatefulWidget {
@@ -18,6 +20,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
 
   DateTime initDate = DateTime(
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
+
+  DateTime newDateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -231,20 +235,93 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                     child: Column(
                       children: [
                         SizedBox(
-                          width: double.infinity,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: const Color(0xffE4C2D1).withOpacity(0.80),
-                            ),
-                            alignment: Alignment.center,
-                            child: Text(Jiffy(initDate).yMMMEd,
-                                style: CustomTextStyle()
-                                    .textStyle(14, Colors.black)),
-                          ),
-                        ),
+                            width: double.infinity,
+                            child: InkWell(
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                margin: const EdgeInsets.symmetric(vertical: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color:
+                                      const Color(0xffE4C2D1).withOpacity(0.80),
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(Jiffy(newDateTime).yMMMEd,
+                                    style: CustomTextStyle()
+                                        .textStyle(14, Colors.black)),
+                              ),
+                              onTap: () async {
+                                // TODO: show calender and pass the current date
+                                DateTime? date = await showRoundedDatePicker(
+                                  context: context,
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime(DateTime.now().year + 5),
+                                  initialDate: newDateTime,
+                                  background: Colors.transparent,
+                                  height: 350,
+                                  theme: ThemeData(
+                                    shadowColor: Colors.transparent,
+                                    primaryColor:
+                                        Theme.of(context).backgroundColor,
+                                    dialogBackgroundColor: Colors.white,
+                                    textTheme: const TextTheme(
+                                      caption: TextStyle(color: Colors.black),
+                                      subtitle1: TextStyle(color: Colors.black),
+                                      bodyText1: TextStyle(color: Colors.black),
+                                      bodyText2: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  textDirection: TextDirection.ltr,
+                                  styleDatePicker:
+                                      MaterialRoundedDatePickerStyle(
+                                    colorArrowNext: Colors.black,
+                                    colorArrowPrevious: Colors.black,
+                                    backgroundPicker:
+                                        Theme.of(context).backgroundColor,
+                                    textStyleDayHeader: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleMonthYearHeader: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleCurrentDayOnCalendar:
+                                        const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleDayButton: const TextStyle(
+                                        color: Colors.black, fontSize: 18),
+                                    textStyleDayOnCalendar: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleButtonPositive: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleButtonNegative: const TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textStyleYearButton: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                    paddingMonthHeader:
+                                        const EdgeInsets.all(12),
+                                    decorationDateSelected: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      borderRadius: BorderRadius.circular(35),
+                                    ),
+                                  ),
+                                );
+
+                                //TODO: change the current date to the new date and save it to the database
+
+                                if (date != null && date != newDateTime) {
+                                  newDateTime = date;
+                                }
+                                setState(() {});
+                              },
+                            )),
                         const SizedBox(
                           height: 10,
                         ),
@@ -313,3 +390,60 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
+
+// DateTime? date = await showRoundedDatePicker(
+// context: context,
+// firstDate: DateTime.parse(e["deadline_date"]),
+// lastDate: DateTime(DateTime.now().year + 5),
+// initialDate: DateTime.parse(e["deadline_date"]),
+// background: Colors.transparent,
+// height: 350,
+// theme: ThemeData(
+// shadowColor: Colors.transparent,
+// primaryColor: Theme.of(context).scaffoldBackgroundColor,
+// dialogBackgroundColor: Colors.white,
+// textTheme: TextTheme(
+// caption: TextStyle(color: Colors.black),
+// subtitle1: TextStyle(color: Colors.black),
+// bodyText1: TextStyle(color: Colors.black),
+// bodyText2: TextStyle(color: Colors.black),
+// ),
+// ),
+// textDirection: textDirection,
+// styleDatePicker: MaterialRoundedDatePickerStyle(
+// colorArrowNext: Colors.black,
+// colorArrowPrevious: Colors.black,
+// backgroundPicker: Theme.of(context).scaffoldBackgroundColor,
+// textStyleDayHeader: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleMonthYearHeader: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleCurrentDayOnCalendar: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleDayButton: TextStyle(color: Colors.black, fontSize: 18),
+// textStyleDayOnCalendar: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleButtonPositive: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleButtonNegative: TextStyle(
+// color: Colors.black,
+// ),
+// textStyleYearButton: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+// paddingMonthHeader: EdgeInsets.all(12),
+// decorationDateSelected: BoxDecoration(
+// color: Theme.of(context).backgroundColor,
+// borderRadius: BorderRadius.circular(35),
+// ),
+// ),
+// );
+//
+// //TODO: change the current date to the new date and save it to the database
+//
+// if (date != null && date != newDateTime) newDateTime = date;
+// },
+// )
