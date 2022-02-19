@@ -11,8 +11,6 @@ class InvitationScreen extends StatefulWidget {
 }
 
 class _InvitationScreenState extends State<InvitationScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +71,8 @@ class _InvitationScreenState extends State<InvitationScreen> {
                             children: [
                               Text(
                                 "Welcome, Dash!",
-                                style: CustomTextStyle().textStyle(22, Colors.black,
+                                style: CustomTextStyle().textStyle(
+                                    22, Colors.black,
                                     fontWeight: FontWeight.w500),
                               ),
                               const Gap(2.5),
@@ -137,177 +136,178 @@ class _InvitationScreenState extends State<InvitationScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
                   "My Invitations",
-                  style: CustomTextStyle().textStyle(14, const Color(0xff7A7A7A),
+                  style: CustomTextStyle().textStyle(
+                      14, const Color(0xff7A7A7A),
                       fontWeight: FontWeight.bold),
                 ),
               ),
               const Gap(8),
               Flexible(
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection("invitations").snapshots(),
-                  builder: (context,snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          child:  Text(
-                            "Something went to error!",
-                            style: CustomTextStyle().textStyle(
-                                12, const Color(0xff7A7A7A),
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      );
-                    }
-
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-
-                    if (snapshot.data?.size == 0) {
-                      return Center(
-                        child:  Text(
-                          "Don't Start Your First Invitation!",
-                          style: CustomTextStyle().textStyle(
-                              12, const Color(0xff7A7A7A),
-                              fontWeight: FontWeight.w500),
-                        ),
-                      );
-                    }
-
-                    return GridView(
-                      physics: const ScrollPhysics(),
-                      padding: const EdgeInsets.only(
-                          left: 12, right: 12, bottom: 16, top: 0),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      // itemCount: docs?.length,
-                      gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: 140,
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 4,
-                        mainAxisSpacing: 4,
-                      ),
-                      children: snapshot.data!.docs.map(
-                            (DocumentSnapshot document) {
-                          Timestamp t = document["date"];
-                          DateTime date = t.toDate();
-                          // int messageLength = document.get("message").toString().length;
-
-
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffC2D1E4),
-                              borderRadius: BorderRadius.circular(16),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection("invitations")
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                "Something went to error!",
+                                style: CustomTextStyle().textStyle(
+                                    12, const Color(0xff7A7A7A),
+                                    fontWeight: FontWeight.w500),
+                              ),
                             ),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 4),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          MdiIcons.mapMarkerCheck,
-                                          color: Color(0xffA90641),
-                                        ),
-                                        Text(
-                                          document["location"],
-                                          style: CustomTextStyle().textStyle(
-                                              12, const Color(0xff7A7A7A),
-                                              fontWeight: FontWeight.w500),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                          );
+                        }
+
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.data?.size == 0) {
+                          return Center(
+                            child: Text(
+                              "Don't Start Your First Invitation!",
+                              style: CustomTextStyle().textStyle(
+                                  12, const Color(0xff7A7A7A),
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          );
+                        }
+
+                        return GridView(
+                          physics: const ScrollPhysics(),
+                          padding: const EdgeInsets.only(
+                              left: 12, right: 12, bottom: 16, top: 0),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          // itemCount: docs?.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisExtent: 140,
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 4,
+                          ),
+                          children: snapshot.data!.docs.map(
+                            (DocumentSnapshot document) {
+                              Timestamp t = document["date"];
+                              DateTime date = t.toDate();
+                              // int messageLength = document.get("message").toString().length;
+
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffC2D1E4),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 15),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 1, horizontal: 8),
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xff19879C),
-                                        borderRadius: BorderRadius.only(
-                                          bottomRight: Radius.circular(15),
-                                          topRight: Radius.circular(15),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 4),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              MdiIcons.mapMarkerCheck,
+                                              color: Color(0xffA90641),
+                                            ),
+                                            Text(
+                                              document["location"],
+                                              style: CustomTextStyle()
+                                                  .textStyle(12,
+                                                      const Color(0xff7A7A7A),
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      child: Text(
-                                        Jiffy(date).MMMd,
-                                        style: CustomTextStyle().textStyle(
-                                            12, Colors.white,
-                                            fontWeight: FontWeight.w500),
-                                      ),
                                     ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    document["to"]
-                                        .toString()
-                                        .toUpperCase(),
-                                    style: CustomTextStyle().textStyle(16, Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 8),
-                                      child: SizedBox(
-                                        width: double.infinity,
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15),
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
-                                              vertical: 4, horizontal: 8),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff19879C),
-                                            borderRadius:
-                                            BorderRadius.circular(16),
+                                              vertical: 1, horizontal: 8),
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xff19879C),
+                                            borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(15),
+                                              topRight: Radius.circular(15),
+                                            ),
                                           ),
                                           child: Text(
-                                            "Tab for more details",
+                                            Jiffy(date).MMMd,
                                             style: CustomTextStyle().textStyle(
                                                 12, Colors.white,
                                                 fontWeight: FontWeight.w500),
-                                            textAlign: TextAlign.center,
                                           ),
                                         ),
                                       ),
-                                    )),
-                              ],
-                            ),
-                          );
-                        },
-                      ).toList(),
-
-
-                    );
-
-
-                  }
-                )
-              ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        document["to"].toString().toUpperCase(),
+                                        style: CustomTextStyle().textStyle(
+                                            16, Colors.black,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 8),
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 4,
+                                                      horizontal: 8),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xff19879C),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              child: Text(
+                                                "Tab for more details",
+                                                style: CustomTextStyle()
+                                                    .textStyle(12, Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              );
+                            },
+                          ).toList(),
+                        );
+                      })),
             ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               showDialog(
-                context:  context,
-                builder: (dialogContext){
-                  return  NewInvitationWidget();
+                context: context,
+                builder: (dialogContext) {
+                  return NewInvitationWidget();
                 },
               );
             },

@@ -20,7 +20,4 @@ class FirebaseDB {
       print("Added");
     });
   }
-
-
-
 }
