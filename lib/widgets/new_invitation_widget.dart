@@ -172,6 +172,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                   const Gap(10),
                                   TextFormField(
                                     controller: inviteeNameController,
+                                    minLines: 2,
+                                    maxLines: 3,
                                     style: CustomTextStyle()
                                         .textStyle(12, Colors.black),
                                     decoration: InputDecoration(
