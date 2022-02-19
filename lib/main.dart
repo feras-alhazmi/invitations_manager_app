@@ -1,9 +1,10 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 
 import 'exports.dart';
 
-void main() {
+Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor:Color(0xff19879C),
@@ -12,6 +13,9 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
