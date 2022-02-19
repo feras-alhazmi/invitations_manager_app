@@ -18,6 +18,10 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
   TextEditingController contentController = TextEditingController();
   bool contentValidate = false;
 
+  TextEditingController locationController = TextEditingController();
+  bool locationValidate = false;
+
+
   DateTime initDate = DateTime(
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
 
@@ -321,7 +325,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                 }
                                 setState(() {});
                               },
-                            )),
+                            ),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -370,6 +375,104 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                     : (_currentStep > 2
                         ? StepState.complete
                         : StepState.disabled),
+              ),
+              Step(
+                title: Text(
+                  "Place",
+                  style: CustomTextStyle().textStyle(14, Colors.black),
+                ),
+                subtitle: Text(
+                  "type the location",
+                  style:
+                  CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
+                ),
+                content: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: locationController,
+                          style: CustomTextStyle().textStyle(12, Colors.black),
+                          decoration: InputDecoration(
+                            errorText: locationValidate
+                                ? "Please Enter the location of the meeting"
+                                : null,
+                            hintText: "place",
+                            hintStyle:
+                            CustomTextStyle().textStyle(12, Colors.grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            isDense: true,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: const Color(0xffB6351C),
+                              ),
+                              child: Text(
+                                "Back",
+                                style: CustomTextStyle()
+                                    .textStyle(12, Colors.white),
+                              ),
+                              // onPressed: continued,
+                              onPressed: () {
+                                cancel();
+                              },
+                            ),
+                            const Gap(12),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: Color(0xff2A7B4F),
+                              ),
+                              child: Text(
+                                "View",
+                                style: CustomTextStyle()
+                                    .textStyle(12, Colors.white),
+                              ),
+                              // onPressed: continued,
+                              onPressed: () {
+                                if (locationController.text.isEmpty) {
+                                  setState(() {
+                                    locationValidate = true;
+                                  });
+                                } else {
+                                  continued();
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+                isActive: _currentStep == 3,
+                state: _currentStep == 3
+                    ? StepState.editing
+                    : (_currentStep > 3
+                    ? StepState.complete
+                    : StepState.disabled),
               ),
             ],
           ),
