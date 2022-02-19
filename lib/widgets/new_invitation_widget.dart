@@ -20,498 +20,610 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
 
   TextEditingController locationController = TextEditingController();
   bool locationValidate = false;
-
+  
+  
+  TextEditingController regardsController  = TextEditingController();
+  bool  regardsValidate= false;
+  
 
   DateTime initDate = DateTime(
       DateTime.now().year, DateTime.now().month + 1, DateTime.now().day);
 
   DateTime newDateTime = DateTime.now();
 
+
+  @override
+  void dispose() {
+
+    inviteeNameController.dispose();
+    contentController.dispose();
+    locationController.dispose();
+    regardsController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.fromLTRB(24,24,24,48),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          body: Container(
-            child: Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
+          body: Stack(
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Gap(40),
+                  const Divider(color: Colors.black,height: 2),
+                  Flexible(child:  Stepper(
+                    type: StepperType.vertical,
+                    physics: const ScrollPhysics(),
+                    currentStep: _currentStep,
+                    controlsBuilder: (BuildContext context, controlsBuilder) {
+                      return Container();
                     },
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 50),
-                    child: Text(
-                      "New Invitation Card",
-                      style: CustomTextStyle().textStyle(18,Colors.black,fontWeight: FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Gap(40),
-                    const Divider(color: Colors.black),
-                    // Gap(40),
-                    Stepper(
-                      type: StepperType.vertical,
-                      physics: const ScrollPhysics(),
-                      currentStep: _currentStep,
-                      controlsBuilder: (BuildContext context, controlsBuilder) {
-                        return Container();
-                      },
-                      steps: [
-                        Step(
-                          title: Text(
-                            "Invitee Name",
-                            style: CustomTextStyle().textStyle(14, Colors.black),
-                          ),
-                          subtitle: Text(
-                            "type the name of the person you want to invite",
-                            style:
-                            CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
-                          ),
-                          content: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    controller: inviteeNameController,
-                                    style: CustomTextStyle().textStyle(12, Colors.black),
-                                    decoration: InputDecoration(
-                                      errorText: inviteeNameValidate
-                                          ? "Please Enter the invitee name to continue"
-                                          : null,
-                                      hintText: "name",
-                                      hintStyle:
-                                      CustomTextStyle().textStyle(12, Colors.grey),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.red),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      isDense: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
-                                        ),
-                                        child: Text(
-                                          "Next",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          if (inviteeNameController.text.isEmpty) {
-                                            setState(() {
-                                              inviteeNameValidate = true;
-                                            });
-                                          } else {
-                                            continued();
-                                          }
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          isActive: _currentStep == 0,
-                          state: _currentStep == 0
-                              ? StepState.editing
-                              : (_currentStep > 0
-                              ? StepState.complete
-                              : StepState.disabled),
+                    steps: [
+                      Step(
+                        title: Text(
+                          "Invitee Name",
+                          style: CustomTextStyle().textStyle(14, Colors.black),
                         ),
-                        Step(
-                          title: Text(
-                            "Content",
-                            style: CustomTextStyle().textStyle(14, Colors.black),
-                          ),
-                          subtitle: Text(
-                            "Enter the invitation content",
-                            style:
-                            CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
-                          ),
-                          content: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    controller: contentController,
-                                    style: CustomTextStyle().textStyle(12, Colors.black),
-                                    maxLines: 5,
-                                    decoration: InputDecoration(
-                                      errorText: contentValidate
-                                          ? "The content of the invitation is required"
-                                          : null,
-                                      hintText: "type your invitation content here",
-                                      hintStyle:
-                                      CustomTextStyle().textStyle(12, Colors.grey),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.red),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      isDense: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: Color(0xffB6351C),
-                                        ),
-                                        child: Text(
-                                          "Back",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          cancel();
-                                        },
-                                      ),
-                                      const Gap(12),
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
-                                        ),
-                                        child: Text(
-                                          "Next",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          if (contentController.text.isEmpty) {
-                                            setState(() {
-                                              contentValidate = true;
-                                            });
-                                          } else {
-                                            continued();
-                                          }
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          isActive: _currentStep == 1,
-                          state: _currentStep == 1
-                              ? StepState.editing
-                              : (_currentStep > 1
-                              ? StepState.complete
-                              : StepState.disabled),
+                        subtitle: Text(
+                          "type the name of the person you want to invite",
+                          style:
+                          CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
                         ),
-                        Step(
-                          title: Text(
-                            "Date",
-                            style: CustomTextStyle().textStyle(14, Colors.black),
-                          ),
-                          subtitle: Text(
-                            "Pickup the date of the invitation",
-                            style:
-                            CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
-                          ),
-                          content: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: InkWell(
-                                      child: Container(
-                                        padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                        margin: const EdgeInsets.symmetric(vertical: 8),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(15),
-                                          color:
-                                          const Color(0xffE4C2D1).withOpacity(0.80),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Text(Jiffy(newDateTime).yMMMEd,
-                                            style: CustomTextStyle()
-                                                .textStyle(14, Colors.black)),
+                        content: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: inviteeNameController,
+                                  style: CustomTextStyle().textStyle(12, Colors.black),
+                                  decoration: InputDecoration(
+                                    errorText: inviteeNameValidate
+                                        ? "Please Enter the invitee name to continue"
+                                        : null,
+                                    hintText: "name",
+                                    hintStyle:
+                                    CustomTextStyle().textStyle(12, Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.red),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    isDense: true,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xff2A7B4F),
                                       ),
-                                      onTap: () async {
-                                        // TODO: show calender and pass the current date
-                                        DateTime? date = await showRoundedDatePicker(
-                                          context: context,
-                                          firstDate: DateTime.now(),
-                                          lastDate: DateTime(DateTime.now().year + 5),
-                                          initialDate: newDateTime,
-                                          background: Colors.transparent,
-                                          height: 350,
-                                          theme: ThemeData(
-                                            shadowColor: Colors.transparent,
-                                            primaryColor:
-                                            Theme.of(context).backgroundColor,
-                                            dialogBackgroundColor: Colors.white,
-                                            textTheme: const TextTheme(
-                                              caption: TextStyle(color: Colors.black),
-                                              subtitle1: TextStyle(color: Colors.black),
-                                              bodyText1: TextStyle(color: Colors.black),
-                                              bodyText2: TextStyle(color: Colors.black),
-                                            ),
-                                          ),
-                                          textDirection: TextDirection.ltr,
-                                          styleDatePicker:
-                                          MaterialRoundedDatePickerStyle(
-                                            colorArrowNext: Colors.black,
-                                            colorArrowPrevious: Colors.black,
-                                            backgroundPicker:
-                                            Theme.of(context).backgroundColor,
-                                            textStyleDayHeader: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleMonthYearHeader: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleCurrentDayOnCalendar:
-                                            const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleDayButton: const TextStyle(
-                                                color: Colors.black, fontSize: 18),
-                                            textStyleDayOnCalendar: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleButtonPositive: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleButtonNegative: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            textStyleYearButton: const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                            paddingMonthHeader:
-                                            const EdgeInsets.all(12),
-                                            decorationDateSelected: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .scaffoldBackgroundColor,
-                                              borderRadius: BorderRadius.circular(35),
-                                            ),
-                                          ),
-                                        );
-
-                                        //TODO: change the current date to the new date and save it to the database
-
-                                        if (date != null && date != newDateTime) {
-                                          newDateTime = date;
+                                      child: Text(
+                                        "Next",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        if (inviteeNameController.text.isEmpty) {
+                                          setState(() {
+                                            inviteeNameValidate = true;
+                                          });
+                                        } else {
+                                          continued();
                                         }
-                                        setState(() {});
                                       },
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: const Color(0xffB6351C),
-                                        ),
-                                        child: Text(
-                                          "Back",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          cancel();
-                                        },
-                                      ),
-                                      const Gap(12),
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: const Color(0xff2A7B4F),
-                                        ),
-                                        child: Text(
-                                          "Next",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          continued();
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          isActive: _currentStep == 2,
-                          state: _currentStep == 2
-                              ? StepState.editing
-                              : (_currentStep > 2
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        isActive: _currentStep == 0,
+                        state: _currentStep == 0
+                            ? StepState.editing
+                            : (_currentStep > 0
+                            ? StepState.complete
+                            : StepState.disabled),
+                      ),
+                      Step(
+                        title: Text(
+                          "Content",
+                          style: CustomTextStyle().textStyle(14, Colors.black),
                         ),
-                        Step(
-                          title: Text(
-                            "Place",
-                            style: CustomTextStyle().textStyle(14, Colors.black),
-                          ),
-                          subtitle: Text(
-                            "type the location",
-                            style:
-                            CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
-                          ),
-                          content: Padding(
-                              padding: const EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    controller: locationController,
-                                    style: CustomTextStyle().textStyle(12, Colors.black),
-                                    decoration: InputDecoration(
-                                      errorText: locationValidate
-                                          ? "Please Enter the location of the meeting"
-                                          : null,
-                                      hintText: "place",
-                                      hintStyle:
-                                      CustomTextStyle().textStyle(12, Colors.grey),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.red),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.grey),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      isDense: true,
+                        subtitle: Text(
+                          "Enter the invitation content",
+                          style:
+                          CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
+                        ),
+                        content: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: contentController,
+                                  style: CustomTextStyle().textStyle(12, Colors.black),
+                                  maxLines: 5,
+                                  decoration: InputDecoration(
+                                    errorText: contentValidate
+                                        ? "The content of the invitation is required"
+                                        : null,
+                                    hintText: "type your invitation content here",
+                                    hintStyle:
+                                    CustomTextStyle().textStyle(12, Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.red),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    isDense: true,
                                   ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: const Color(0xffB6351C),
-                                        ),
-                                        child: Text(
-                                          "Back",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          cancel();
-                                        },
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xffB6351C),
                                       ),
-                                      const Gap(12),
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
-                                        ),
-                                        child: Text(
-                                          "View",
-                                          style: CustomTextStyle()
-                                              .textStyle(12, Colors.white),
-                                        ),
-                                        // onPressed: continued,
-                                        onPressed: () {
-                                          if (locationController.text.isEmpty) {
-                                            setState(() {
-                                              locationValidate = true;
-                                            });
-                                          } else {
-                                            continued();
-                                          }
-                                        },
+                                      child: Text(
+                                        "Back",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          isActive: _currentStep == 3,
-                          state: _currentStep == 3
-                              ? StepState.editing
-                              : (_currentStep > 3
-                              ? StepState.complete
-                              : StepState.disabled),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        cancel();
+                                      },
+                                    ),
+                                    const Gap(12),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xff2A7B4F),
+                                      ),
+                                      child: Text(
+                                        "Next",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        if (contentController.text.isEmpty) {
+                                          setState(() {
+                                            contentValidate = true;
+                                          });
+                                        } else {
+                                          continued();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        isActive: _currentStep == 1,
+                        state: _currentStep == 1
+                            ? StepState.editing
+                            : (_currentStep > 1
+                            ? StepState.complete
+                            : StepState.disabled),
+                      ),
+                      Step(
+                        title: Text(
+                          "Date",
+                          style: CustomTextStyle().textStyle(14, Colors.black),
                         ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
+                        subtitle: Text(
+                          "Pickup the date of the invitation",
+                          style:
+                          CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
+                        ),
+                        content: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: InkWell(
+                                    child: Container(
+                                      padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                      margin: const EdgeInsets.symmetric(vertical: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color:
+                                        const Color(0xffE4C2D1).withOpacity(0.80),
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Text(Jiffy(newDateTime).yMMMEd,
+                                          style: CustomTextStyle()
+                                              .textStyle(14, Colors.black)),
+                                    ),
+                                    onTap: () async {
+                                      // TODO: show calender and pass the current date
+                                      DateTime? date = await showRoundedDatePicker(
+                                        context: context,
+                                        firstDate: newDateTime,
+                                        lastDate: DateTime(DateTime.now().year + 5),
+                                        initialDate: newDateTime,
+                                        background: Colors.transparent,
+                                        height: 350,
+                                        theme: ThemeData(
+                                          shadowColor: Colors.transparent,
+                                          primaryColor:
+                                          Theme.of(context).backgroundColor,
+                                          dialogBackgroundColor: Colors.white,
+                                          textTheme: const TextTheme(
+                                            caption: TextStyle(color: Colors.black),
+                                            subtitle1: TextStyle(color: Colors.black),
+                                            bodyText1: TextStyle(color: Colors.black),
+                                            bodyText2: TextStyle(color: Colors.black),
+                                          ),
+                                        ),
+                                        textDirection: TextDirection.ltr,
+                                        styleDatePicker:
+                                        MaterialRoundedDatePickerStyle(
+                                          colorArrowNext: Colors.black,
+                                          colorArrowPrevious: Colors.black,
+                                          backgroundPicker:
+                                          Theme.of(context).backgroundColor,
+                                          textStyleDayHeader: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleMonthYearHeader: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleCurrentDayOnCalendar:
+                                          const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleDayButton: const TextStyle(
+                                              color: Colors.black, fontSize: 18),
+                                          textStyleDayOnCalendar: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleButtonPositive: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleButtonNegative: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          textStyleYearButton: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                          paddingMonthHeader:
+                                          const EdgeInsets.all(12),
+                                          decorationDateSelected: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .scaffoldBackgroundColor,
+                                            borderRadius: BorderRadius.circular(35),
+                                          ),
+                                        ),
+                                      );
+
+                                      //TODO: change the current date to the new date and save it to the database
+
+                                      if (date != null && date != newDateTime) {
+                                        newDateTime = date;
+                                      }
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: const Color(0xffB6351C),
+                                      ),
+                                      child: Text(
+                                        "Back",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        cancel();
+                                      },
+                                    ),
+                                    const Gap(12),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: const Color(0xff2A7B4F),
+                                      ),
+                                      child: Text(
+                                        "Next",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        continued();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        isActive: _currentStep == 2,
+                        state: _currentStep == 2
+                            ? StepState.editing
+                            : (_currentStep > 2
+                            ? StepState.complete
+                            : StepState.disabled),
+                      ),
+                      Step(
+                        title: Text(
+                          "Place",
+                          style: CustomTextStyle().textStyle(14, Colors.black),
+                        ),
+                        subtitle: Text(
+                          "type the location",
+                          style:
+                          CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
+                        ),
+                        content: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: locationController,
+                                  style: CustomTextStyle().textStyle(12, Colors.black),
+                                  decoration: InputDecoration(
+                                    errorText: locationValidate
+                                        ? "Please Enter the location of the meeting"
+                                        : null,
+                                    hintText: "place",
+                                    hintStyle:
+                                    CustomTextStyle().textStyle(12, Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.red),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    isDense: true,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: const Color(0xffB6351C),
+                                      ),
+                                      child: Text(
+                                        "Back",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        cancel();
+                                      },
+                                    ),
+                                    const Gap(12),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xff2A7B4F),
+                                      ),
+                                      child: Text(
+                                        "Next",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        if (locationController.text.isEmpty) {
+                                          setState(() {
+                                            locationValidate = true;
+                                          });
+                                        } else {
+                                          continued();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        isActive: _currentStep == 3,
+                        state: _currentStep == 3
+                            ? StepState.editing
+                            : (_currentStep > 3
+                            ? StepState.complete
+                            : StepState.disabled),
+                      ),
+                      Step(
+                        title: Text(
+                          "Regards",
+                          style: CustomTextStyle().textStyle(14, Colors.black),
+                        ),
+                        subtitle: Text(
+                          "type your own signature and regards",
+                          style:
+                          CustomTextStyle().textStyle(10, const Color(0xffB9ADAD)),
+                        ),
+                        content: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: regardsController,
+                                  style: CustomTextStyle().textStyle(12, Colors.black),
+                                  maxLines: 5,
+                                  decoration: InputDecoration(
+                                    errorText: regardsValidate
+                                        ? "The content of the invitation is required"
+                                        : null,
+                                    hintText: "type your invitation content here",
+                                    hintStyle:
+                                    CustomTextStyle().textStyle(12, Colors.grey),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.red),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    isDense: true,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xffB6351C),
+                                      ),
+                                      child: Text(
+                                        "Back",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        cancel();
+                                      },
+                                    ),
+                                    const Gap(12),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        elevation: 0,
+                                        backgroundColor: Color(0xff2A7B4F),
+                                      ),
+                                      child: Text(
+                                        "View",
+                                        style: CustomTextStyle()
+                                            .textStyle(12, Colors.white),
+                                      ),
+                                      // onPressed: continued,
+                                      onPressed: () {
+                                        if (regardsController.text.isEmpty) {
+                                          setState(() {
+                                            regardsValidate = true;
+                                          });
+                                        } else {
+                                          continued();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        isActive: _currentStep == 4,
+                        state: _currentStep == 4
+                            ? StepState.editing
+                            : (_currentStep > 4
+                            ? StepState.complete
+                            : StepState.disabled),
+                      ),
+                    ],
+                  ),)
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 50),
+                  child: Text(
+                    "New Invitation Card",
+                    style: CustomTextStyle().textStyle(18,Colors.black,fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+
+            ],
+          ),
         ),
       ),
     );

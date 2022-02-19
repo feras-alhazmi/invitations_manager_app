@@ -305,9 +305,10 @@ class _InvitationScreenState extends State<InvitationScreen> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               showDialog(
-                builder: (context){
-                  return NewInvitationWidget();
-                }, context: context
+                context:  context,
+                builder: (dialogContext){
+                  return  NewInvitationWidget();
+                },
               );
             },
             child: const Icon(Icons.add, size: 35),
