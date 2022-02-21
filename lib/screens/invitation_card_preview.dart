@@ -61,7 +61,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
             ),
-            height: MediaQuery.of(context).size.height*0.80,
+            height: MediaQuery.of(context).size.height*0.85,
             
           ),
           Scaffold(
@@ -86,7 +86,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
             ),
             body: Column(
               children: [
-                const Gap(68),
+                SizedBox(height: MediaQuery.of(context).size.height*0.15),
                 Stack(
                   children: [
                     Padding(
@@ -142,7 +142,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                         margin:
                                         const EdgeInsets.symmetric(horizontal: 12),
                                         height: 35,
-                                        width: 4,
+                                        width: 2,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: const Color(0xffD1D1D1),
@@ -175,7 +175,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Gap(50),
+                                    const Gap(100),
                                     Text(
                                       widget.invitation["name"],
                                       style: CustomTextStyle().textStyle(
@@ -186,13 +186,13 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                     Text(
                                       widget.invitation["content"],
                                       style: CustomTextStyle()
-                                          .textStyle(18, Colors.black),
+                                          .textStyle(16, Colors.black),
                                     ),
                                     const Gap(24),
                                     Text(
                                       widget.invitation["regards"],
                                       style: CustomTextStyle()
-                                          .textStyle(18, Colors.black),
+                                          .textStyle(16, Colors.black),
                                     ),
                                   ],
                                 ),
