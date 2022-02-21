@@ -16,7 +16,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
     {
       "icon": const Icon(
         Icons.edit,
-        size: 35,
+        size: 40,
         color: Color(0xff7C7C7C),
       ),
       "title": "Edit",
@@ -25,7 +25,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
       "icon": const Icon(
         Icons.delete,
         color: Color(0xffE50000),
-        size: 35,
+        size: 40,
       ),
       "title": "Delete",
     },
@@ -33,7 +33,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
       "icon": Icon(
         Icons.save,
         color: Colors.green[900],
-        size: 35,
+        size: 40,
       ),
       "title": "Save",
     },
@@ -90,7 +90,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                 Stack(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.45,
                         width: double.infinity,
@@ -221,34 +221,43 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(buttons.length, (index) {
-                    return Container(
-                      height: 130,
-                      width: 116,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffEDF0F3),
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
-                            offset: const Offset(0,0),
-                            spreadRadius: 2,
-                            blurRadius: 2
-                          )
-                        ]
+                    return InkWell(
+                      child: Container(
+                        height: 140,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffEDF0F3),
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.15),
+                                  offset: const Offset(0,0),
+                                  spreadRadius: 2,
+                                  blurRadius: 2
+                              )
+                            ]
+                        ),
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 32),
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              buttons[index]["icon"],
+                              const Spacer(),
+                              Text(
+                                buttons[index]["title"],
+                                style: CustomTextStyle().textStyle(20, Colors.black),
+                              ),
+                            ]),
                       ),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            buttons[index]["icon"],
-                            const Gap(12),
-                            Text(
-                              buttons[index]["title"],
-                              style: CustomTextStyle().textStyle(18, Colors.black),
-                            ),
-                          ]),
+                      onTap: (){
+                        if(index == 0){
+                          print("EDIT");
+                        }else{
+                          index == 1 ? print("Delete") :  print("Save");
+                        }
+                      },
                     );
                   }),
                 )
