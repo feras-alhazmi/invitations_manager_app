@@ -287,6 +287,12 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                           ),
                           onTap: () {
                             if (index == 0) {
+                              SystemChrome.setSystemUIOverlayStyle(
+                                const SystemUiOverlayStyle(
+                                  systemNavigationBarColor: Color(0xff19879C),
+                                  systemNavigationBarIconBrightness: Brightness.dark,
+                                ),
+                              );
                               Navigator.pop(context);
                             } else {
                               index == 1
