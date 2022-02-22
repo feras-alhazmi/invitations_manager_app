@@ -66,21 +66,28 @@ class _InvitationScreenState extends State<InvitationScreen> {
                             ),
                           ),
                           const Gap(10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Welcome, Dash!",
-                                style: CustomTextStyle().textStyle(
-                                    22, Colors.black,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              const Gap(2.5),
-                              Text("You Can Manage Your invitation now!",
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Welcome, Dash!",
+                                  style: CustomTextStyle().textStyle(
+                                      22, Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const Gap(2.5),
+
+                                Text("You Can Manage Your invitation now!",
                                   style: CustomTextStyle().textStyle(
                                       12, const Color(0xff4B2A2A),
-                                      fontWeight: FontWeight.w500)),
-                            ],
+                                      fontWeight: FontWeight.w500),
+                                  softWrap: false,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -310,6 +317,9 @@ class _InvitationScreenState extends State<InvitationScreen> {
                   return NewInvitationWidget();
                 },
               );
+              // Navigator.push(context, MaterialPageRoute(builder: (context){
+              //   return NewInvitationWidget();
+              // }));
             },
             child: const Icon(Icons.add, size: 35),
             backgroundColor: const Color(0xff2A7B4F),
