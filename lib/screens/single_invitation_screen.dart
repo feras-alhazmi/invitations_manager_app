@@ -1,6 +1,7 @@
 import 'package:dash_invitation_app/exports.dart';
 import 'package:dash_invitation_app/widgets/pointers_cliper.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SingleInvitationScreen extends StatefulWidget {
   final DocumentSnapshot document;
@@ -31,11 +32,11 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
     },
     {
       "icon": Icon(
-        Icons.save,
+        FontAwesomeIcons.solidShareSquare,
         color: Colors.green[900],
-        size: 40,
+        size: 35,
       ),
-      "title": "Save",
+      "title": "Share",
     },
   ];
 
