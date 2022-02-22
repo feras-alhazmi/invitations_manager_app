@@ -115,8 +115,8 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                               child: Stack(
                                 children: [
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 24),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 24),
                                     child: Align(
                                       alignment: Alignment.topLeft,
                                       child: Row(
@@ -197,17 +197,20 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                         Row(
                                           children: [
                                             Text(
-                                              widget.invitation["welcome_sentence"],
-                                              style: CustomTextStyle().textStyle(
-                                                  18, Colors.black,
-                                                  fontWeight: FontWeight.w500),
+                                              widget.invitation[
+                                                  "welcome_sentence"],
+                                              style: CustomTextStyle()
+                                                  .textStyle(18, Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                             ),
                                             const Gap(3),
                                             Text(
                                               widget.invitation["to"],
-                                              style: CustomTextStyle().textStyle(
-                                                  18, Colors.black,
-                                                  fontWeight: FontWeight.w500),
+                                              style: CustomTextStyle()
+                                                  .textStyle(18, Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500),
                                             ),
                                           ],
                                         ),
@@ -286,7 +289,14 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                             if (index == 0) {
                               print("EDIT");
                             } else {
-                              index == 1 ? print("Delete") : FirebaseDB().addInvitation(widget.invitation);
+                              index == 1
+                                  ? Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              InvitationScreen()),
+                                      (route) => false)
+                                  : FirebaseDB()
+                                      .addInvitation(widget.invitation);
                             }
                           },
                         );
