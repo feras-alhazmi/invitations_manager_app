@@ -99,10 +99,6 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
     },
   ];
 
-  // List<String,Color> colors = [
-  //
-  //
-  // ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -1034,60 +1030,3 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
-
-// DateTime? date = await showRoundedDatePicker(
-// context: context,
-// firstDate: DateTime.parse(e["deadline_date"]),
-// lastDate: DateTime(DateTime.now().year + 5),
-// initialDate: DateTime.parse(e["deadline_date"]),
-// background: Colors.transparent,
-// height: 350,
-// theme: ThemeData(
-// shadowColor: Colors.transparent,
-// primaryColor: Theme.of(context).scaffoldBackgroundColor,
-// dialogBackgroundColor: Colors.white,
-// textTheme: TextTheme(
-// caption: TextStyle(color: Colors.black),
-// subtitle1: TextStyle(color: Colors.black),
-// bodyText1: TextStyle(color: Colors.black),
-// bodyText2: TextStyle(color: Colors.black),
-// ),
-// ),
-// textDirection: textDirection,
-// styleDatePicker: MaterialRoundedDatePickerStyle(
-// colorArrowNext: Colors.black,
-// colorArrowPrevious: Colors.black,
-// backgroundPicker: Theme.of(context).scaffoldBackgroundColor,
-// textStyleDayHeader: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleMonthYearHeader: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleCurrentDayOnCalendar: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleDayButton: TextStyle(color: Colors.black, fontSize: 18),
-// textStyleDayOnCalendar: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleButtonPositive: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleButtonNegative: TextStyle(
-// color: Colors.black,
-// ),
-// textStyleYearButton: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-// paddingMonthHeader: EdgeInsets.all(12),
-// decorationDateSelected: BoxDecoration(
-// color: Theme.of(context).backgroundColor,
-// borderRadius: BorderRadius.circular(35),
-// ),
-// ),
-// );
-//
-// //TODO: change the current date to the new date and save it to the database
-//
-// if (date != null && date != newDateTime) newDateTime = date;
-// },
-// )
