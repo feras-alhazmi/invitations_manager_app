@@ -240,7 +240,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                         child: Transform.translate(
                           offset: const Offset(100, -70),
                           child: Image.asset(
-                            "assets/images/dash_manager-x.png",
+                            "assets/images/dash_designer-2.png",
                             width: 300,
                             height: 260,
                             fit: BoxFit.cover,
@@ -290,7 +290,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                               SystemChrome.setSystemUIOverlayStyle(
                                 const SystemUiOverlayStyle(
                                   systemNavigationBarColor: Color(0xff19879C),
-                                  systemNavigationBarIconBrightness: Brightness.dark,
+                                  systemNavigationBarIconBrightness: Brightness.light,
                                 ),
                               );
                               Navigator.pop(context);
