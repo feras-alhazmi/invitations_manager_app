@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 class SingleInvitationScreen extends StatefulWidget {
   final DocumentSnapshot document;
 
-
-  const SingleInvitationScreen(this.document , {Key? key}): super(key: key);
+  const SingleInvitationScreen(this.document, {Key? key}) : super(key: key);
 
   @override
   _SingleInvitationScreenState createState() => _SingleInvitationScreenState();
@@ -64,7 +63,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius:
-                const BorderRadius.vertical(bottom: Radius.circular(10)),
+                    const BorderRadius.vertical(bottom: Radius.circular(10)),
               ),
               height: MediaQuery.of(context).size.height * 0.85,
             ),
@@ -82,35 +81,71 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                   onPressed: () => Navigator.pop(context),
                 ),
                 title: Text(
-                  "Preview Invitation Card",
+                  "Invitation Card",
                   style: CustomTextStyle()
                       .textStyle(18, Colors.white, fontWeight: FontWeight.w500),
                 ),
                 centerTitle: true,
               ),
               body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 4,horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(15),
+                      color: const Color(0xffD0DF72)
+                    ),
+                    width: 190,
+                    alignment: Alignment.center,
+                    child: Text("Create ${Jiffy(date).yMMMMd}",
+                        style: CustomTextStyle()
+                            .textStyle(14, Colors.black)),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 4,horizontal: 8),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(15),
+                      color: const Color(0xffA90641)
+                    ),
+                    width: 190,
+                    alignment: Alignment.center,
+                    child: Text("Updated ${Jiffy(date).yMMMMd}",
+                        style: CustomTextStyle()
+                            .textStyle(14, Colors.white)),
+                  ),
+                  // SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+                  const Gap(8),
                   Stack(
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: SizedBox(
+                        child: ClipRRect(borderRadius: BorderRadius.circular(10),child: SizedBox(
                           height: MediaQuery.of(context).size.height * 0.45,
                           width: double.infinity,
                           child: ClipPath(
                             clipper: PointsClipper(),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: const Color(0xffEDF0F3),
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.15),
-                                        offset: const Offset(0, 0),
-                                        spreadRadius: 2,
-                                        blurRadius: 2)
-                                  ]),
+                                color: const Color(0xffEDF0F3),
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.15),
+                                      offset: const Offset(0, 0),
+                                      spreadRadius: 2,
+                                      blurRadius: 2)
+                                ],
+                              ),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 12),
                               child: Stack(
@@ -173,8 +208,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                                 size: 30,
                                               ),
                                               Text(
-                                                Jiffy(date)
-                                                    .yMMMd,
+                                                Jiffy(date).yMMMd,
                                                 style:
                                                 CustomTextStyle().textStyle(
                                                   14,
@@ -198,8 +232,8 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                         Row(
                                           children: [
                                             Text(
-                                              widget.document[
-                                              "welcome_sentence"],
+                                              widget
+                                                  .document["welcome_sentence"],
                                               style: CustomTextStyle()
                                                   .textStyle(18, Colors.black,
                                                   fontWeight:
@@ -234,7 +268,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                               ),
                             ),
                           ),
-                        ),
+                        ),),
                       ),
                       Align(
                         alignment: Alignment.center,
@@ -259,7 +293,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                       children: List.generate(buttons.length, (index) {
                         return InkWell(
                           child: Container(
-                            height: 133,
+                            height: 100,
                             width: MediaQuery.of(context).size.width * 0.28,
                             decoration: BoxDecoration(
                                 color: const Color(0xffEDF0F3),
@@ -272,7 +306,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                       blurRadius: 2)
                                 ]),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 32),
+                                horizontal: 8, vertical: 12),
                             margin: const EdgeInsets.symmetric(horizontal: 6),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -314,6 +348,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
               ),
             ),
           ],
-        ));
+        ),
+    );
   }
 }
