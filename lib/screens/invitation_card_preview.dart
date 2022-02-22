@@ -287,13 +287,13 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                           ),
                           onTap: () {
                             if (index == 0) {
-                              print("EDIT");
+                              Navigator.pop(context);
                             } else {
                               index == 1
                                   ? Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              InvitationScreen()),
+                                              const InvitationScreen()),
                                       (route) => false)
                                   : FirebaseDB()
                                       .addInvitation(widget.invitation);
