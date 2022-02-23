@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:dash_invitation_app/controllers/firestore_database.dart';
 import 'package:dash_invitation_app/widgets/pointers_cliper.dart';
 import 'package:flutter/services.dart';
 
 import '../exports.dart';
+import '../widgets/check_animated.dart';
 
 class InvitationCardPreview extends StatefulWidget {
   final Map<String, dynamic> invitation;
@@ -302,7 +305,31 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                               const InvitationScreen()),
                                       (route) => false)
                                   : FirebaseDB()
-                                      .addInvitation(widget.invitation);
+                                      .addInvitation(widget.invitation).then((value){
+                                showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      backgroundColor: Color(0xffEDF0F3),
+                                      elevation: 0.0,
+                                      content: AnimatedCheck(),
+                                    );
+                                  },
+                                );
+                                Timer(
+                                  const Duration(seconds: 2),
+                                      () {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const InvitationScreen()),
+                                            (route) => false);
+                                  },
+                                );
+                              });
                             }
                           },
                         );

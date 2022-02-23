@@ -1,7 +1,13 @@
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+
 import '../exports.dart';
+import 'check_animated.dart';
 
 class WarringDialog {
   showWarringDialog(
+    String id,
     String title,
     String content,
     BuildContext context,
@@ -44,7 +50,44 @@ class WarringDialog {
                       ),
                     ),
                     onPressed: () {
-                      //TODO: implement the delete operation
+                      FirebaseFirestore.instance
+                          .collection("invitations")
+                          .doc(id)
+                          .delete()
+                          .then((value) {
+                        showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              backgroundColor: Color(0xffEDF0F3),
+                              elevation: 0.0,
+                              content: AnimatedCheck(),
+                            );
+                          },
+                        );
+
+
+
+                        Timer(
+                          const Duration(seconds: 1),
+                          () {
+                            SystemChrome.setSystemUIOverlayStyle(
+                              const SystemUiOverlayStyle(
+                                systemNavigationBarColor: Color(0xff19879C),
+                                systemNavigationBarIconBrightness: Brightness.light,
+                              ),
+                            );
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const InvitationScreen()),
+                                (route) => false);
+                          },
+                        );
+                      });
                     },
                   ),
             functionOfNoButton == null
