@@ -11,6 +11,23 @@ class InvitationScreen extends StatefulWidget {
 class _InvitationScreenState extends State<InvitationScreen> {
 
 
+  late var invitationCreated ;
+  late var visitedDone ;
+
+
+  @override
+  void initState() {
+    invitationCreated = 9 ;
+    FirebaseFirestore.instance
+        .collection("invitations")
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      invitationCreated = querySnapshot.docs.length;
+    });
+
+    visitedDone = 4;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -96,6 +113,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(24, 0, 12, 12),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Row(
                             children: [
@@ -108,13 +126,12 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                 ),
                               ),
                               const Gap(5),
-                              Text("12 Visited You Done",
+                              Text("$visitedDone Visited You Done",
                                   style: CustomTextStyle().textStyle(
                                       12, const Color(0xff96A922),
                                       fontWeight: FontWeight.w500)),
                             ],
                           ),
-                          const Spacer(),
                           Row(
                             children: [
                               Container(
@@ -126,7 +143,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                 ),
                               ),
                               const Gap(5),
-                              Text("10 Invitation Created",
+                              Text("$invitationCreated Invitation Created",
                                   style: CustomTextStyle().textStyle(
                                       12, const Color(0xffB15C7B),
                                       fontWeight: FontWeight.w500)),
