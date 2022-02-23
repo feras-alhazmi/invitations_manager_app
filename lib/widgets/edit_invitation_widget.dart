@@ -973,20 +973,24 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                     regardsValidate = true;
                                   });
                                 } else {
-                                  // Navigator.of(context).push(
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) {
-                                  //           return InvitationCardPreview({
-                                  //           return InvitationCardPreview({
-                                  //             "welcome_sentence":
-                                  //             welcomeSentenceController.text,
-                                  //             "to": inviteeNameController.text,
-                                  //             "content": contentController.text,
-                                  //             "location": locationController.text,
-                                  //             "date": newDateTime,
-                                  //             "regards": regardsController.text,
-                                  //           });
-                                  //         }));
+                                  FirebaseFirestore.instance.collection("invitations").doc(widget.document.id
+                                  ).update({
+                                    "welcome_sentence":
+                                    welcomeSentenceController.text,
+                                    "to": inviteeNameController.text,
+                                    "content": contentController.text,
+                                    "location": locationController.text,
+                                    "date": newDateTime,
+                                    "regards": regardsController.text,
+                                  }).then((value){
+
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const InvitationScreen()),
+                                            (route) => false);
+
+                                  });
                                 }
                               },
                             ),
