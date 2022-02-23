@@ -316,7 +316,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                             ),
-                                            backgroundColor: Color(0xffEDF0F3),
+                                            backgroundColor: const Color(0xffEDF0F3),
                                             elevation: 0.0,
                                             content: AnimatedCheck(),
                                           );
