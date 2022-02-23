@@ -293,7 +293,8 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                               SystemChrome.setSystemUIOverlayStyle(
                                 const SystemUiOverlayStyle(
                                   systemNavigationBarColor: Color(0xff19879C),
-                                  systemNavigationBarIconBrightness: Brightness.light,
+                                  systemNavigationBarIconBrightness:
+                                      Brightness.light,
                                 ),
                               );
                               Navigator.pop(context);
@@ -305,31 +306,42 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                               const InvitationScreen()),
                                       (route) => false)
                                   : FirebaseDB()
-                                      .addInvitation(widget.invitation).then((value){
-                                showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      backgroundColor: Color(0xffEDF0F3),
-                                      elevation: 0.0,
-                                      content: AnimatedCheck(),
-                                    );
-                                  },
-                                );
-                                Timer(
-                                  const Duration(seconds: 2),
-                                      () {
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            const InvitationScreen()),
-                                            (route) => false);
-                                  },
-                                );
-                              });
+                                      .addInvitation(widget.invitation)
+                                      .then((value) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            backgroundColor: Color(0xffEDF0F3),
+                                            elevation: 0.0,
+                                            content: AnimatedCheck(),
+                                          );
+                                        },
+                                      );
+
+                                      Timer(
+                                        const Duration(seconds: 1),
+                                        () {
+                                          SystemChrome.setSystemUIOverlayStyle(
+                                            const SystemUiOverlayStyle(
+                                              systemNavigationBarColor:
+                                                  Color(0xff19879C),
+                                              systemNavigationBarIconBrightness:
+                                                  Brightness.light,
+                                            ),
+                                          );
+                                          Navigator.of(context).pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const InvitationScreen()),
+                                              (route) => false);
+                                        },
+                                      );
+                                    });
                             }
                           },
                         );
