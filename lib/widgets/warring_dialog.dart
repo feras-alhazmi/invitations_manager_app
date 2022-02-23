@@ -58,13 +58,26 @@ class WarringDialog {
                           context: context,
                           builder: (dialogContext) {
                             return AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              backgroundColor: Color(0xffEDF0F3),
-                              elevation: 0.0,
-                              content: AnimatedCheck(),
-                            );
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                backgroundColor: Color(0xffEDF0F3),
+                                elevation: 0.0,
+                                content: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Transform.translate(offset: Offset(0,37.5),
+                                    child: Text("Deleted Successfully", style: CustomTextStyle().textStyle(
+                                      16,
+                                      Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),),),
+                                    Transform.translate(
+                                      offset: const Offset(0, -25),
+                                      child: AnimatedCheck(),
+                                    )
+                                  ],
+                                ));
                           },
                         );
 

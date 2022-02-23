@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:dash_invitation_app/exports.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 class EditInvitationWidget extends StatefulWidget {
@@ -28,6 +31,9 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   bool regardsValidate = false;
 
 
+
+  late DateTime newDateTime ;
+
   @override
   void initState() {
     welcomeSentenceController = TextEditingController(text:widget.document["welcome_sentence"]);
@@ -35,6 +41,11 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
     regardsController = TextEditingController(text: widget.document["regards"]);
     inviteeNameController = TextEditingController(text: widget.document["to"]);
     contentController = TextEditingController(text: widget.document["content"]);
+
+    Timestamp t = widget.document["date"];
+    DateTime date = t.toDate();
+    newDateTime = date;
+
     super.initState();
   }
   @override
@@ -107,11 +118,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   Widget build(BuildContext context) {
 
 
-    Timestamp t = widget.document["date"];
-    DateTime date = t.toDate();
 
-
-    DateTime newDateTime = date;
 
     return Container(
       margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -961,11 +968,10 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 backgroundColor: Color(0xff2A7B4F),
                               ),
                               child: Text(
-                                "View",
+                                "Done",
                                 style: CustomTextStyle()
                                     .textStyle(12, Colors.white),
                               ),
-// onPressed: continued,
                               onPressed: () {
                                 if (regardsController.text.isEmpty ||
                                     regardsController.text.trim() == "") {
@@ -983,12 +989,50 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                     "date": newDateTime,
                                     "regards": regardsController.text,
                                   }).then((value){
+                                    showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                            ),
+                                            backgroundColor: Color(0xffEDF0F3),
+                                            elevation: 0.0,
+                                            content: Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Transform.translate(offset: Offset(0,37.5),
+                                                  child: Text("Edited Successfully", style: CustomTextStyle().textStyle(
+                                                    16,
+                                                    Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),),
+                                                Transform.translate(
+                                                  offset: const Offset(0, -25),
+                                                  child: AnimatedCheck(),
+                                                )
+                                              ],
+                                            ));
+                                      },
+                                    );
 
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            const InvitationScreen()),
-                                            (route) => false);
+                                    Timer(
+                                      const Duration(seconds: 1),
+                                          () {
+                                        SystemChrome.setSystemUIOverlayStyle(
+                                          const SystemUiOverlayStyle(
+                                            systemNavigationBarColor: Color(0xff19879C),
+                                            systemNavigationBarIconBrightness:
+                                            Brightness.light,
+                                          ),
+                                        );
+                                        Navigator.of(context).pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                const InvitationScreen()),
+                                                (route) => false);
+                                      },
+                                    );
 
                                   });
                                 }

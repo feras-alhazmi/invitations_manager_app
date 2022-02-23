@@ -36,12 +36,12 @@ class _AnimatedCheckState extends State<AnimatedCheck>
 
   @override
   Widget build(BuildContext context) {
-    double circleSize = 140;
-    double iconSize = 108;
+    double circleSize = 70;
+    double iconSize = 54;
 
     return SizedBox(
       width: 140,
-      height: 150,
+      height: 100,
       child: Stack(
         children: [
           Center(
