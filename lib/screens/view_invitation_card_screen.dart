@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:dash_invitation_app/exports.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:screenshot/screenshot.dart';
+
 
 class SaveInvitationCardScreen extends StatefulWidget {
   final DocumentSnapshot document;
@@ -272,7 +270,7 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
                  ),
                  onTap: ()async{
                    final image = await screenShopController.capture();
-                   await saveImage(image).then((value){
+                   await Utils.saveImage(image).then((value){
                      showDialog(
                        context: context,
                        builder: (dialogContext) {
@@ -329,12 +327,5 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
       ),
     );
   }
-  Future<String> saveImage( image) async {
-    await [Permission.storage].request();
-    final dateSaved = DateTime.now().toIso8601String().replaceAll('.', '-').replaceAll(':', '-');
-    final name = "InvitationCard_$dateSaved";
 
-    final result = await ImageGallerySaver.saveImage(image,name: name);
-    return result["filePath"];
-  }
 }
