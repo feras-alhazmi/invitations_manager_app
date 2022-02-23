@@ -308,39 +308,50 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                   : FirebaseDB()
                                       .addInvitation(widget.invitation)
                                       .then((value) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            backgroundColor: const Color(0xffEDF0F3),
-                                            elevation: 0.0,
-                                            content: AnimatedCheck(),
-                                          );
-                                        },
-                                      );
+                                showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        backgroundColor: const Color(0xffEDF0F3),
+                                        elevation: 0.0,
+                                        content: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Transform.translate(offset: const Offset(0,37.5),
+                                              child: Text("Invitation Created Successfully", style: CustomTextStyle().textStyle(
+                                                16,
+                                                Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),),),
+                                            Transform.translate(
+                                              offset: const Offset(0, -25),
+                                              child: AnimatedCheck(),
+                                            )
+                                          ],
+                                        ));
+                                  },
+                                );
 
-                                      Timer(
-                                        const Duration(seconds: 1),
-                                        () {
-                                          SystemChrome.setSystemUIOverlayStyle(
-                                            const SystemUiOverlayStyle(
-                                              systemNavigationBarColor:
-                                                  Color(0xff19879C),
-                                              systemNavigationBarIconBrightness:
-                                                  Brightness.light,
-                                            ),
-                                          );
-                                          Navigator.of(context).pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const InvitationScreen()),
-                                              (route) => false);
-                                        },
-                                      );
+                                Timer(
+                                  const Duration(seconds: 1),
+                                      () {
+                                    SystemChrome.setSystemUIOverlayStyle(
+                                      const SystemUiOverlayStyle(
+                                        systemNavigationBarColor: Color(0xff19879C),
+                                        systemNavigationBarIconBrightness:
+                                        Brightness.light,
+                                      ),
+                                    );
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            const InvitationScreen()),
+                                            (route) => false);
+                                  },
+                                );
                                     });
                             }
                           },

@@ -33,6 +33,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
 
 
   late DateTime newDateTime ;
+  late DateTime date ;
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
     contentController = TextEditingController(text: widget.document["content"]);
 
     Timestamp t = widget.document["date"];
-    DateTime date = t.toDate();
+     date = t.toDate();
     newDateTime = date;
 
     super.initState();
@@ -978,17 +979,16 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   setState(() {
                                     regardsValidate = true;
                                   });
-                                } else {
-                                  FirebaseFirestore.instance.collection("invitations").doc(widget.document.id
-                                  ).update({
-                                    "welcome_sentence":
-                                    welcomeSentenceController.text,
-                                    "to": inviteeNameController.text,
-                                    "content": contentController.text,
-                                    "location": locationController.text,
-                                    "date": newDateTime,
-                                    "regards": regardsController.text,
-                                  }).then((value){
+                                }
+                                else {
+
+                                  if(welcomeSentenceController.text == widget.document["welcome_sentence"] &&
+                                      inviteeNameController.text == widget.document["to"] &&
+                                      contentController.text == widget.document["content"] &&
+                                      locationController.text == widget.document["location"] &&
+                                      regardsController.text == widget.document["regards"] &&
+                                  newDateTime == date
+                                  ){
                                     showDialog(
                                       context: context,
                                       builder: (dialogContext) {
@@ -996,45 +996,116 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(10),
                                             ),
-                                            backgroundColor: Color(0xffEDF0F3),
-                                            elevation: 0.0,
+                                            backgroundColor: const Color(0xffEDF0F3),
+                                            contentPadding: const EdgeInsets.fromLTRB(32,32,32,12),
                                             content: Stack(
                                               alignment: Alignment.center,
                                               children: [
-                                                Transform.translate(offset: Offset(0,37.5),
-                                                  child: Text("Edited Successfully", style: CustomTextStyle().textStyle(
+                                                Transform.translate(offset: const Offset(0,37.5),
+                                                  child: Text("You didn't change anything!", style: CustomTextStyle().textStyle(
                                                     16,
                                                     Colors.black,
                                                     fontWeight: FontWeight.bold,
                                                   ),),),
                                                 Transform.translate(
                                                   offset: const Offset(0, -25),
-                                                  child: AnimatedCheck(),
+                                                  child:  Container(
+                                                    child: const CircleAvatar(
+                                                      backgroundImage:
+                                                      AssetImage("assets/images/dash_designer2.png"),
+                                                      radius: 50,
+                                                      backgroundColor: Colors.transparent,
+                                                    ),
+                                                    decoration: BoxDecoration(
+
+                                                      borderRadius: BorderRadius.circular(100),
+                                                    ),
+                                                  ),
                                                 )
                                               ],
-                                            ));
-                                      },
-                                    );
-
-                                    Timer(
-                                      const Duration(seconds: 1),
-                                          () {
-                                        SystemChrome.setSystemUIOverlayStyle(
-                                          const SystemUiOverlayStyle(
-                                            systemNavigationBarColor: Color(0xff19879C),
-                                            systemNavigationBarIconBrightness:
-                                            Brightness.light,
-                                          ),
+                                            ),
+                                          actions: [
+                                            InkWell(
+                                              child: Container(
+                                                padding:
+                                                const EdgeInsets.symmetric(vertical: 8),
+                                                margin:
+                                                const EdgeInsets.fromLTRB( 8,0,8,8),
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(15),
+                                                    color: Colors.green.shade800
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text("Get it",
+                                                    style: CustomTextStyle()
+                                                        .textStyle(16, Colors.white)),
+                                              ),
+                                              onTap: (){
+                                                Navigator.pop(context);
+                                              },
+                                            )
+                                          ],
                                         );
-                                        Navigator.of(context).pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                const InvitationScreen()),
-                                                (route) => false);
                                       },
                                     );
+                                  }else{
+                                    FirebaseFirestore.instance.collection("invitations").doc(widget.document.id
+                                    ).update({
+                                      "welcome_sentence":
+                                      welcomeSentenceController.text,
+                                      "to": inviteeNameController.text,
+                                      "content": contentController.text,
+                                      "location": locationController.text,
+                                      "date": newDateTime,
+                                      "regards": regardsController.text,
+                                    }).then((value){
+                                      showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10),
+                                              ),
+                                              backgroundColor: const Color(0xffEDF0F3),
+                                              elevation: 0.0,
+                                              content: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Transform.translate(offset: const Offset(0,37.5),
+                                                    child: Text("Edited Successfully", style: CustomTextStyle().textStyle(
+                                                      16,
+                                                      Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),),),
+                                                  Transform.translate(
+                                                    offset: const Offset(0, -25),
+                                                    child: AnimatedCheck(),
+                                                  )
+                                                ],
+                                              ));
+                                        },
+                                      );
 
-                                  });
+                                      Timer(
+                                        const Duration(seconds: 1),
+                                            () {
+                                          SystemChrome.setSystemUIOverlayStyle(
+                                            const SystemUiOverlayStyle(
+                                              systemNavigationBarColor: Color(0xff19879C),
+                                              systemNavigationBarIconBrightness:
+                                              Brightness.light,
+                                            ),
+                                          );
+                                          Navigator.of(context).pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                  const InvitationScreen()),
+                                                  (route) => false);
+                                        },
+                                      );
+
+                                    });
+                                  }
                                 }
                               },
                             ),
