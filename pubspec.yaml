@@ -45,7 +45,6 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   xid: ^1.0.7
   flutter_rounded_date_picker: ^2.0.2
-  status_alert: ^1.0.0
 
 
 dev_dependencies:

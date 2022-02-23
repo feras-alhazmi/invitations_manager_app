@@ -8,38 +8,39 @@ import 'package:xid/xid.dart';
 import '../widgets/check_animated.dart';
 
 class FirebaseDB {
-  Future<void> addInvitation(Map<String,dynamic> invitationContent) async {
+  Future<void> addInvitation(Map<String, dynamic> invitationContent) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
     Xid xid = Xid();
 
-   for(int x = 0 ; x<10 ; x++){
-     firebaseFirestore.collection("invitations").doc(x.toString()).set(invitationContent).then((value) {
-       print("Added");
-     });
-   }
+    for (int x = 0; x < 10; x++) {
+      firebaseFirestore
+          .collection("invitations")
+          .doc(x.toString())
+          .set(invitationContent)
+          .then((value) {
+        print("Added");
+      });
+    }
   }
 
-
-  Future<void> deleteInvitation(BuildContext context,dynamic id)async {
-    FirebaseFirestore.instance.collection("invitations").doc(id).delete().then((value){
+  Future<void> deleteInvitation(BuildContext context, dynamic id) async {
+    FirebaseFirestore.instance
+        .collection("invitations")
+        .doc(id)
+        .delete()
+        .then((value) {
       showDialog(
         context: context,
         builder: (dialogContext) {
           return AnimatedCheck();
         },
       );
-      Timer(
-          Duration(
-              seconds: 2),
-              (){
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                    builder: (context) =>
-                    const InvitationScreen()),
-                    (route) => false);
-          });
+      Timer(Duration(seconds: 2), () {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const InvitationScreen()),
+            (route) => false);
+      });
     });
-
   }
 }

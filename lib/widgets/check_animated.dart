@@ -5,11 +5,16 @@ class AnimatedCheck extends StatefulWidget {
   _AnimatedCheckState createState() => _AnimatedCheckState();
 }
 
-class _AnimatedCheckState extends State<AnimatedCheck> with TickerProviderStateMixin {
-  late AnimationController scaleController = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
-  late Animation<double> scaleAnimation = CurvedAnimation(parent: scaleController, curve: Curves.elasticOut);
-  late AnimationController checkController = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
-  late Animation<double> checkAnimation = CurvedAnimation(parent: checkController, curve: Curves.linear);
+class _AnimatedCheckState extends State<AnimatedCheck>
+    with TickerProviderStateMixin {
+  late AnimationController scaleController = AnimationController(
+      duration: const Duration(milliseconds: 500), vsync: this);
+  late Animation<double> scaleAnimation =
+      CurvedAnimation(parent: scaleController, curve: Curves.elasticOut);
+  late AnimationController checkController = AnimationController(
+      duration: const Duration(milliseconds: 200), vsync: this);
+  late Animation<double> checkAnimation =
+      CurvedAnimation(parent: checkController, curve: Curves.linear);
 
   @override
   void initState() {
@@ -37,7 +42,7 @@ class _AnimatedCheckState extends State<AnimatedCheck> with TickerProviderStateM
     return SizedBox(
       width: 140,
       height: 150,
-      child:Stack(
+      child: Stack(
         children: [
           Center(
             child: ScaleTransition(

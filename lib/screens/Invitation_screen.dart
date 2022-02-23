@@ -78,8 +78,8 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 const Gap(2.5),
-
-                                Text("You Can Manage Your invitation now!",
+                                Text(
+                                  "You Can Manage Your invitation now!",
                                   style: CustomTextStyle().textStyle(
                                       12, const Color(0xff4B2A2A),
                                       fontWeight: FontWeight.w500),
@@ -209,106 +209,123 @@ class _InvitationScreenState extends State<InvitationScreen> {
                               // int messageLength = document.get("message").toString().length;
 
                               return InkWell(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xffC2D1E4),
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.topRight,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8, vertical: 4),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            children: [
-                                              const Icon(
-                                                MdiIcons.mapMarkerCheck,
-                                                color: Color(0xffA90641),
-                                              ),
-                                              Text(
-                                                document["location"],
-                                                style: CustomTextStyle()
-                                                    .textStyle(12,
-                                                    const Color(0xff7A7A7A),
-                                                    fontWeight:
-                                                    FontWeight.w500),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 15),
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 1, horizontal: 8),
-                                            decoration: const BoxDecoration(
-                                              color: Color(0xff19879C),
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight: Radius.circular(15),
-                                                topRight: Radius.circular(15),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              Jiffy(date).MMMd,
-                                              style: CustomTextStyle().textStyle(
-                                                  12, Colors.white,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          document["to"].toString().toUpperCase(),
-                                          style: CustomTextStyle().textStyle(
-                                              16, Colors.black,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      Align(
-                                          alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xffC2D1E4),
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topRight,
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 8, vertical: 8),
-                                            child: SizedBox(
-                                              width: double.infinity,
-                                              child: Container(
-                                                padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 4,
-                                                    horizontal: 8),
-                                                decoration: BoxDecoration(
-                                                  color: const Color(0xff19879C),
-                                                  borderRadius:
-                                                  BorderRadius.circular(16),
+                                                horizontal: 8, vertical: 4),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  MdiIcons.mapMarkerCheck,
+                                                  color: Color(0xffA90641),
                                                 ),
-                                                child: Text(
-                                                  "Tab for more details",
+                                                Text(
+                                                  document["location"],
                                                   style: CustomTextStyle()
-                                                      .textStyle(12, Colors.white,
-                                                      fontWeight:
-                                                      FontWeight.w500),
-                                                  textAlign: TextAlign.center,
+                                                      .textStyle(
+                                                          12,
+                                                          const Color(
+                                                              0xff7A7A7A),
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 15),
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 1,
+                                                      horizontal: 8),
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xff19879C),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(15),
+                                                  topRight: Radius.circular(15),
                                                 ),
                                               ),
+                                              child: Text(
+                                                Jiffy(date).MMMd,
+                                                style: CustomTextStyle()
+                                                    .textStyle(12, Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                              ),
                                             ),
-                                          )),
-                                    ],
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            document["to"]
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: CustomTextStyle().textStyle(
+                                                16, Colors.black,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 8),
+                                              child: SizedBox(
+                                                width: double.infinity,
+                                                child: Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 4,
+                                                      horizontal: 8),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        const Color(0xff19879C),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16),
+                                                  ),
+                                                  child: Text(
+                                                    "Tab for more details",
+                                                    style: CustomTextStyle()
+                                                        .textStyle(
+                                                            12, Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                onTap: (){
-                                  Navigator.of(context).push(MaterialPageRoute(builder: ((context) => SingleInvitationScreen(document))));
-                              }
-                              );
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                SingleInvitationScreen(
+                                                    document))));
+                                  });
                             },
                           ).toList(),
                         );

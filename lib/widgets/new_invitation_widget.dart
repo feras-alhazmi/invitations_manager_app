@@ -115,7 +115,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                   const Gap(40),
                   const Divider(color: Colors.black, height: 2),
                   Flexible(
-                    child:   Stepper(
+                    child: Stepper(
                       type: StepperType.vertical,
                       physics: const ScrollPhysics(),
                       currentStep: _currentStep,
@@ -127,7 +127,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           title: Text(
                             "Welcome Sentence",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "type a welcome sentence to the person you want to invitee",
@@ -145,21 +145,21 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               color: titleSuggestions[index]
-                                              ["color"],
+                                                  ["color"],
                                               borderRadius:
-                                              BorderRadius.circular(2)),
+                                                  BorderRadius.circular(2)),
                                           child: Text(
                                               titleSuggestions[index]["text"],
                                               style: CustomTextStyle()
                                                   .textStyle(
-                                                  12, Color(0xff423C3C))),
+                                                      12, Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
                                         onTap: () {
                                           setState(() {
                                             welcomeSentenceController.text =
-                                            titleSuggestions[index]["text"];
+                                                titleSuggestions[index]["text"];
                                             welcomeSentenceValidate = false;
                                           });
                                         },
@@ -192,7 +192,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide:
-                                        const BorderSide(color: Colors.red),
+                                            const BorderSide(color: Colors.red),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -203,14 +203,15 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       isDense: true,
                                     ),
                                     onChanged: (value) {
-                                      if (welcomeSentenceController.text.trim() ==
+                                      if (welcomeSentenceController.text
+                                              .trim() ==
                                           "") {
                                         setState(() {
-                                      welcomeSentenceValidate = true;
+                                          welcomeSentenceValidate = true;
                                         });
                                       } else {
                                         setState(() {
-                                      welcomeSentenceValidate = false;
+                                          welcomeSentenceValidate = false;
                                         });
                                       }
                                     },
@@ -234,10 +235,10 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         ),
                                         // onPressed: continued,
                                         onPressed: () {
-                                          if ( welcomeSentenceController
-                                              .text.isEmpty ||
+                                          if (welcomeSentenceController
+                                                  .text.isEmpty ||
                                               welcomeSentenceController.text
-                                                  .trim() ==
+                                                      .trim() ==
                                                   "") {
                                             setState(() {
                                               welcomeSentenceValidate = true;
@@ -255,14 +256,14 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 0
                               ? StepState.editing
                               : (_currentStep > 0
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                         Step(
                           title: Text(
                             "Invitee Name",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "type the name of the person you want to invite",
@@ -298,7 +299,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide:
-                                        const BorderSide(color: Colors.red),
+                                            const BorderSide(color: Colors.red),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -357,9 +358,9 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         // onPressed: continued,
                                         onPressed: () {
                                           if (inviteeNameController
-                                              .text.isEmpty ||
+                                                  .text.isEmpty ||
                                               inviteeNameController.text
-                                                  .trim() ==
+                                                      .trim() ==
                                                   "") {
                                             setState(() {
                                               inviteeNameValidate = true;
@@ -377,14 +378,14 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 1
                               ? StepState.editing
                               : (_currentStep > 1
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                         Step(
                           title: Text(
                             "Content",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "Enter the invitation content",
@@ -402,22 +403,22 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               color: contentSuggestions[index]
-                                              ["color"],
+                                                  ["color"],
                                               borderRadius:
-                                              BorderRadius.circular(2)),
+                                                  BorderRadius.circular(2)),
                                           child: Text(
                                               contentSuggestions[index]["text"],
                                               style: CustomTextStyle()
                                                   .textStyle(
-                                                  12, Color(0xff423C3C))),
+                                                      12, Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
                                         onTap: () {
                                           setState(() {
                                             contentController.text =
-                                            contentSuggestions[index]
-                                            ["text"];
+                                                contentSuggestions[index]
+                                                    ["text"];
                                             contentValidate = false;
                                           });
                                         },
@@ -437,7 +438,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                           ? "The content of the invitation is required"
                                           : null,
                                       hintText:
-                                      "type your invitation content here",
+                                          "type your invitation content here",
                                       hintStyle: CustomTextStyle()
                                           .textStyle(12, Colors.grey),
                                       enabledBorder: OutlineInputBorder(
@@ -452,7 +453,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide:
-                                        const BorderSide(color: Colors.red),
+                                            const BorderSide(color: Colors.red),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -528,14 +529,14 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 2
                               ? StepState.editing
                               : (_currentStep > 2
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                         Step(
                           title: Text(
                             "Place",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "type the location",
@@ -559,22 +560,22 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         .textStyle(12, Colors.grey),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                      const BorderSide(color: Colors.grey),
+                                          const BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                      const BorderSide(color: Colors.grey),
+                                          const BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide:
-                                      const BorderSide(color: Colors.red),
+                                          const BorderSide(color: Colors.red),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide:
-                                      const BorderSide(color: Colors.grey),
+                                          const BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     isDense: true,
@@ -602,7 +603,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       style: TextButton.styleFrom(
                                         elevation: 0,
                                         backgroundColor:
-                                        const Color(0xffB6351C),
+                                            const Color(0xffB6351C),
                                       ),
                                       child: Text(
                                         "Back",
@@ -647,16 +648,14 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 3
                               ? StepState.editing
                               : (_currentStep > 3
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                         Step(
-
-
                           title: Text(
                             "Regards",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "type your own signature and regards",
@@ -674,22 +673,22 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               color: regardsSuggestions[index]
-                                              ["color"],
+                                                  ["color"],
                                               borderRadius:
-                                              BorderRadius.circular(2)),
+                                                  BorderRadius.circular(2)),
                                           child: Text(
                                               regardsSuggestions[index]["text"],
                                               style: CustomTextStyle()
                                                   .textStyle(
-                                                  12, Color(0xff423C3C))),
+                                                      12, Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
                                         onTap: () {
                                           setState(() {
                                             regardsController.text =
-                                            regardsSuggestions[index]
-                                            ["text"];
+                                                regardsSuggestions[index]
+                                                    ["text"];
                                             regardsValidate = false;
                                           });
                                         },
@@ -723,7 +722,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                         borderSide:
-                                        const BorderSide(color: Colors.red),
+                                            const BorderSide(color: Colors.red),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       focusedErrorBorder: OutlineInputBorder(
@@ -747,7 +746,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                   ),
                                   const SizedBox(
                                     height: 10,
-                                  ),Row(
+                                  ),
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: <Widget>[
@@ -755,7 +755,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         style: TextButton.styleFrom(
                                           elevation: 0,
                                           backgroundColor:
-                                          const Color(0xffB6351C),
+                                              const Color(0xffB6351C),
                                         ),
                                         child: Text(
                                           "Back",
@@ -772,7 +772,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         style: TextButton.styleFrom(
                                           elevation: 0,
                                           backgroundColor:
-                                          const Color(0xff2A7B4F),
+                                              const Color(0xff2A7B4F),
                                         ),
                                         child: Text(
                                           "Next",
@@ -792,14 +792,14 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 4
                               ? StepState.editing
                               : (_currentStep > 4
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                         Step(
                           title: Text(
                             "Date",
                             style:
-                            CustomTextStyle().textStyle(14, Colors.black),
+                                CustomTextStyle().textStyle(14, Colors.black),
                           ),
                           subtitle: Text(
                             "Pickup the date of the invitation",
@@ -812,13 +812,12 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                 width: double.infinity,
                                 child: InkWell(
                                   child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8),
-                                    margin: const EdgeInsets.symmetric(
-                                        vertical: 8),
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 8),
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(15),
                                       color: const Color(0xffE4C2D1)
                                           .withOpacity(0.80),
                                     ),
@@ -830,85 +829,79 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                   onTap: () async {
                                     // TODO: show calender and pass the current date
                                     DateTime? date =
-                                    await showRoundedDatePicker(
+                                        await showRoundedDatePicker(
                                       context: context,
                                       firstDate: newDateTime,
                                       lastDate:
-                                      DateTime(DateTime.now().year + 5),
+                                          DateTime(DateTime.now().year + 5),
                                       initialDate: newDateTime,
                                       background: Colors.transparent,
                                       height: 350,
                                       theme: ThemeData(
                                         shadowColor: Colors.transparent,
-                                        primaryColor: Theme.of(context)
-                                            .backgroundColor,
+                                        primaryColor:
+                                            Theme.of(context).backgroundColor,
                                         dialogBackgroundColor: Colors.white,
                                         textTheme: const TextTheme(
-                                          caption: TextStyle(
-                                              color: Colors.black),
-                                          subtitle1: TextStyle(
-                                              color: Colors.black),
-                                          bodyText1: TextStyle(
-                                              color: Colors.black),
-                                          bodyText2: TextStyle(
-                                              color: Colors.black),
+                                          caption:
+                                              TextStyle(color: Colors.black),
+                                          subtitle1:
+                                              TextStyle(color: Colors.black),
+                                          bodyText1:
+                                              TextStyle(color: Colors.black),
+                                          bodyText2:
+                                              TextStyle(color: Colors.black),
                                         ),
                                       ),
                                       textDirection: TextDirection.ltr,
                                       styleDatePicker:
-                                      MaterialRoundedDatePickerStyle(
+                                          MaterialRoundedDatePickerStyle(
                                         colorArrowNext: Colors.black,
                                         colorArrowPrevious: Colors.black,
-                                        backgroundPicker: Theme.of(context)
-                                            .backgroundColor,
+                                        backgroundPicker:
+                                            Theme.of(context).backgroundColor,
                                         textStyleDayHeader: const TextStyle(
                                           color: Colors.black,
                                         ),
                                         textStyleMonthYearHeader:
-                                        const TextStyle(
+                                            const TextStyle(
                                           color: Colors.black,
                                         ),
                                         textStyleCurrentDayOnCalendar:
-                                        const TextStyle(
+                                            const TextStyle(
                                           color: Colors.black,
                                         ),
                                         textStyleDayButton: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18),
-                                        textStyleDayOnCalendar:
-                                        const TextStyle(
+                                            color: Colors.black, fontSize: 18),
+                                        textStyleDayOnCalendar: const TextStyle(
                                           color: Colors.black,
                                         ),
                                         textStyleButtonPositive:
-                                        const TextStyle(
+                                            const TextStyle(
                                           color: Colors.black,
                                         ),
                                         textStyleButtonNegative:
-                                        const TextStyle(
+                                            const TextStyle(
                                           color: Colors.black,
                                         ),
-                                        textStyleYearButton:
-                                        const TextStyle(
+                                        textStyleYearButton: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
-                                            fontWeight:
-                                            FontWeight.bold),
+                                            fontWeight: FontWeight.bold),
                                         paddingMonthHeader:
-                                        const EdgeInsets.all(12),
-                                        decorationDateSelected:
-                                        BoxDecoration(
+                                            const EdgeInsets.all(12),
+                                        decorationDateSelected: BoxDecoration(
                                           color: Theme.of(context)
                                               .scaffoldBackgroundColor,
                                           borderRadius:
-                                          BorderRadius.circular(35),
+                                              BorderRadius.circular(35),
                                         ),
                                       ),
                                     );
 
                                     //TODO: change the current date to the new date and save it to the database
 
-                                    if (date != null &&
-                                        date != newDateTime) {
+                                    if (date != null && date != newDateTime) {
                                       newDateTime = date;
                                     }
                                     setState(() {});
@@ -950,22 +943,23 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
 // onPressed: continued,
                                     onPressed: () {
                                       if (regardsController.text.isEmpty ||
-                                          regardsController.text.trim() ==
-                                              "") {
+                                          regardsController.text.trim() == "") {
                                         setState(() {
                                           regardsValidate = true;
                                         });
                                       } else {
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                                          return InvitationCardPreview(
-                                              {
-                                                "welcome_sentence" : welcomeSentenceController.text,
-                                                "to" : inviteeNameController.text,
-                                                "content" : contentController.text,
-                                                "location" : locationController.text,
-                                                "date" : newDateTime,
-                                                "regards" : regardsController.text,
-                                              });
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return InvitationCardPreview({
+                                            "welcome_sentence":
+                                                welcomeSentenceController.text,
+                                            "to": inviteeNameController.text,
+                                            "content": contentController.text,
+                                            "location": locationController.text,
+                                            "date": newDateTime,
+                                            "regards": regardsController.text,
+                                          });
                                         }));
                                       }
                                     },
@@ -978,8 +972,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                           state: _currentStep == 5
                               ? StepState.editing
                               : (_currentStep > 5
-                              ? StepState.complete
-                              : StepState.disabled),
+                                  ? StepState.complete
+                                  : StepState.disabled),
                         ),
                       ],
                     ),

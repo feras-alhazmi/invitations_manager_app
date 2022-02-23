@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 import '../exports.dart';
-import 'check_animated.dart';
 
 class WarringDialog {
   showWarringDialog(
@@ -69,15 +68,14 @@ class WarringDialog {
                           },
                         );
 
-
-
                         Timer(
                           const Duration(seconds: 1),
                           () {
                             SystemChrome.setSystemUIOverlayStyle(
                               const SystemUiOverlayStyle(
                                 systemNavigationBarColor: Color(0xff19879C),
-                                systemNavigationBarIconBrightness: Brightness.light,
+                                systemNavigationBarIconBrightness:
+                                    Brightness.light,
                               ),
                             );
                             Navigator.of(context).pushAndRemoveUntil(
