@@ -12,7 +12,7 @@ class EditInvitationWidget extends StatefulWidget {
 class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   int _currentStep = 0;
 
-   late TextEditingController welcomeSentenceController;
+  late TextEditingController  welcomeSentenceController;
   bool welcomeSentenceValidate = false;
 
   late TextEditingController inviteeNameController;
@@ -28,6 +28,15 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   bool regardsValidate = false;
 
 
+  @override
+  void initState() {
+    welcomeSentenceController = TextEditingController(text:widget.document["welcome_sentence"]);
+    locationController = TextEditingController(text: widget.document["location"]);
+    regardsController = TextEditingController(text: widget.document["regards"]);
+    inviteeNameController = TextEditingController(text: widget.document["to"]);
+    contentController = TextEditingController(text: widget.document["content"]);
+    super.initState();
+  }
   @override
   void dispose() {
     inviteeNameController.dispose();
@@ -94,13 +103,10 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
     },
   ];
   @override
-  
+
   Widget build(BuildContext context) {
-    welcomeSentenceController = TextEditingController(text: widget.document["welcome_sentence"]);
-    locationController = TextEditingController(text: widget.document["location"]);
-    regardsController = TextEditingController(text: widget.document["regards"]);
-    inviteeNameController = TextEditingController(text: widget.document["to"]);
-    contentController = TextEditingController(text: widget.document["content"]);
+
+
     Timestamp t = widget.document["date"];
     DateTime date = t.toDate();
 
