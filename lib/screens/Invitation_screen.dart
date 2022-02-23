@@ -1,8 +1,5 @@
 import 'package:dash_invitation_app/exports.dart';
-import 'package:dash_invitation_app/screens/single_invitation_screen.dart';
 
-import '../controllers/firestore_database.dart';
-import '../widgets/new_invitation_widget.dart';
 
 class InvitationScreen extends StatefulWidget {
   const InvitationScreen({Key? key}) : super(key: key);

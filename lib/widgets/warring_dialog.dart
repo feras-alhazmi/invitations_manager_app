@@ -1,7 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/services.dart';
-
 import '../exports.dart';
 
 class WarringDialog {
@@ -84,13 +81,8 @@ class WarringDialog {
                         Timer(
                           const Duration(seconds: 1),
                           () {
-                            SystemChrome.setSystemUIOverlayStyle(
-                              const SystemUiOverlayStyle(
-                                systemNavigationBarColor: Color(0xff19879C),
-                                systemNavigationBarIconBrightness:
-                                    Brightness.light,
-                              ),
-                            );
+                            Utils.setSystemUI(const Color(0xff19879C),Brightness.light);
+
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
                                     builder: (context) =>

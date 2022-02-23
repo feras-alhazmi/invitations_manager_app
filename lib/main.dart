@@ -1,17 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
-
 import 'exports.dart';
 
 Future<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemNavigationBarColor: Color(0xff19879C),
-      systemNavigationBarIconBrightness: Brightness.light,
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ),
-  );
+  Utils.setSystemUI(const Color(0xff19879C), Brightness.light);
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:dash_invitation_app/exports.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 class EditInvitationWidget extends StatefulWidget {
   final DocumentSnapshot document;
@@ -1089,13 +1087,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                       Timer(
                                         const Duration(seconds: 1),
                                             () {
-                                          SystemChrome.setSystemUIOverlayStyle(
-                                            const SystemUiOverlayStyle(
-                                              systemNavigationBarColor: Color(0xff19879C),
-                                              systemNavigationBarIconBrightness:
-                                              Brightness.light,
-                                            ),
-                                          );
+                                              Utils.setSystemUI(const Color(0xff19879C),Brightness.light);
+
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) =>

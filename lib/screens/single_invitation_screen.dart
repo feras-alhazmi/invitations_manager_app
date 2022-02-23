@@ -1,13 +1,7 @@
 import 'dart:async';
 
 import 'package:dash_invitation_app/exports.dart';
-import 'package:dash_invitation_app/widgets/pointers_cliper.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../controllers/firestore_database.dart';
-import '../widgets/check_animated.dart';
-import '../widgets/edit_invitation_widget.dart';
 
 class SingleInvitationScreen extends StatefulWidget {
   final DocumentSnapshot document;
@@ -134,12 +128,8 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0xffEDF0F3),
-        systemNavigationBarIconBrightness: Brightness.dark,
-      ),
-    );
+    Utils.setSystemUI(const Color(0xffEDF0F3),Brightness.dark);
+
     super.initState();
   }
 
@@ -162,12 +152,9 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
           WillPopScope(
             onWillPop: () async {
               // Do something here
-              SystemChrome.setSystemUIOverlayStyle(
-                const SystemUiOverlayStyle(
-                  systemNavigationBarColor: Color(0xff19879C),
-                  systemNavigationBarIconBrightness: Brightness.light,
-                ),
-              );
+              Utils.setSystemUI(const Color(0xff19879C),Brightness.light);
+
+
               return true;
             },
             child: Scaffold(
@@ -182,12 +169,9 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                     color: Theme.of(context).backgroundColor,
                   ),
                   onPressed: () {
-                    SystemChrome.setSystemUIOverlayStyle(
-                      const SystemUiOverlayStyle(
-                        systemNavigationBarColor: Color(0xff19879C),
-                        systemNavigationBarIconBrightness: Brightness.light,
-                      ),
-                    );
+                    Utils.setSystemUI(const Color(0xff19879C),Brightness.light);
+
+
                     Navigator.pop(context);
                   },
                 ),
