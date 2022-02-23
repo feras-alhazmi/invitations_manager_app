@@ -94,6 +94,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
     },
   ];
   @override
+  
   Widget build(BuildContext context) {
     welcomeSentenceController = TextEditingController(text: widget.document["welcome_sentence"]);
     locationController = TextEditingController(text: widget.document["location"]);
