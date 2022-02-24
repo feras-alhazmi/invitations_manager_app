@@ -8,7 +8,7 @@ class InvitationScreen extends StatefulWidget {
 }
 
 class _InvitationScreenState extends State<InvitationScreen> {
- 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,138 +35,146 @@ class _InvitationScreenState extends State<InvitationScreen> {
                     ),
                   ],
                 ),
-                child: Column(
+                child: Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                      child: Row(
-                        children: [
-                          // Gap(12),
-                          Container(
-                            child: const CircleAvatar(
-                              backgroundImage:
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                          child: Row(
+                            children: [
+                              // Gap(12),
+                              Container(
+                                child: const CircleAvatar(
+                                  backgroundImage:
                                   AssetImage("assets/images/dash_manager.png"),
-                              radius: 50,
-                              backgroundColor: Color(0xffDFE6E8),
-                            ),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
+                                  radius: 50,
+                                  backgroundColor: Color(0xffDFE6E8),
+                                ),
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
                                       const Color(0xff19879C).withOpacity(0.3),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: const Offset(
-                                      0, 0), // changes position of shadow
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                          ),
-                          const Gap(10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Welcome, Dash!",
-                                  style: CustomTextStyle().textStyle(
-                                      22, Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                const Gap(2.5),
-                                Text(
-                                  "You Can Manage Your invitation now!",
-                                  style: CustomTextStyle().textStyle(
-                                      12, const Color(0xff4B2A2A),
-                                      fontWeight: FontWeight.w500),
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Gap(20),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 0, 12, 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: 25,
-                                width: 4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: const Color(0xffB9D800),
+                                      spreadRadius: 2,
+                                      blurRadius: 2,
+                                      offset: const Offset(
+                                          0, 0), // changes position of shadow
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(100),
                                 ),
                               ),
-                              const Gap(5),
-                              StreamBuilder<QuerySnapshot>(
-                                stream: FirebaseFirestore.instance.collection("invitations").where("date" , isLessThan:  DateTime.now()).snapshots(),
-                                builder: (context,snapshot){
-                                  if (snapshot.hasError || snapshot.connectionState ==
-                                      ConnectionState.waiting || snapshot.data?.size == 0) {
-                                    return Text("- Visited You Done",
+                              const Gap(10),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Welcome, Dash!",
                                       style: CustomTextStyle().textStyle(
-                                          12, const Color(0xff96A922),
+                                          22, Colors.black,
                                           fontWeight: FontWeight.w500),
-                                    );
-                                  }
-
-                                  return Text("${snapshot.data?.docs.length} Visited You Done",
+                                    ),
+                                    const Gap(2.5),
+                                    Text(
+                                      "You Can Manage Your invitation now!",
                                       style: CustomTextStyle().textStyle(
-                                          12, const Color(0xff96A922),
-                                          fontWeight: FontWeight.w500));
-                                },
-                              ),
-
+                                          12, const Color(0xff4B2A2A),
+                                          fontWeight: FontWeight.w500),
+                                      softWrap: false,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ],
+                                ),
+                              )
                             ],
                           ),
-                          Row(
+                        ),
+                        const Gap(20),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 0, 12, 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                height: 25,
-                                width: 4,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: const Color(0xffA90641),
-                                ),
-                              ),
-                              const Gap(5),
-                              StreamBuilder<QuerySnapshot>(
-                                stream: FirebaseFirestore.instance.collection("invitations").snapshots(),
-                                builder: (context,snapshot){
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 25,
+                                    width: 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xffB9D800),
+                                    ),
+                                  ),
+                                  const Gap(5),
+                                  StreamBuilder<QuerySnapshot>(
+                                    stream: FirebaseFirestore.instance.collection("invitations").where("date" , isLessThan:  DateTime.now()).snapshots(),
+                                    builder: (context,snapshot){
+                                      if (snapshot.hasError || snapshot.connectionState ==
+                                          ConnectionState.waiting || snapshot.data?.size == 0) {
+                                        return Text("- Visited You Done",
+                                          style: CustomTextStyle().textStyle(
+                                              12, const Color(0xff96A922),
+                                              fontWeight: FontWeight.w500),
+                                        );
+                                      }
 
-                                  if (snapshot.hasError || snapshot.connectionState ==
-                                      ConnectionState.waiting || snapshot.data?.size == 0) {
-                                    return Text("- Invitation Created",
-                                      style: CustomTextStyle().textStyle(
-                                          12, const Color(0xffB15C7B),
-                                          fontWeight: FontWeight.w500),
-                                    );
-                                  }
-                                  return  Text(
-                                      "${snapshot.data?.docs.length} Invitation Created",
-                                      style: CustomTextStyle().textStyle(
-                                          12, const Color(0xffB15C7B),
-                                          fontWeight: FontWeight.w500));
-                                },
-                              ),
+                                      return Text("${snapshot.data?.docs.length} Visited You Done",
+                                          style: CustomTextStyle().textStyle(
+                                              12, const Color(0xff96A922),
+                                              fontWeight: FontWeight.w500));
+                                    },
+                                  ),
 
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 25,
+                                    width: 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xffA90641),
+                                    ),
+                                  ),
+                                  const Gap(5),
+                                  StreamBuilder<QuerySnapshot>(
+                                    stream: FirebaseFirestore.instance.collection("invitations").snapshots(),
+                                    builder: (context,snapshot){
+
+                                      if (snapshot.hasError || snapshot.connectionState ==
+                                          ConnectionState.waiting || snapshot.data?.size == 0) {
+                                        return Text("- Invitation Created",
+                                          style: CustomTextStyle().textStyle(
+                                              12, const Color(0xffB15C7B),
+                                              fontWeight: FontWeight.w500),
+                                        );
+                                      }
+                                      return  Text(
+                                          "${snapshot.data?.docs.length} Invitation Created",
+                                          style: CustomTextStyle().textStyle(
+                                              12, const Color(0xffB15C7B),
+                                              fontWeight: FontWeight.w500));
+                                    },
+                                  ),
+
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
 
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(onPressed: (){}, icon: const Icon(Icons.settings),),
+                    )
                   ],
-                ),
+                )
               ),
               const Gap(8),
               Padding(
