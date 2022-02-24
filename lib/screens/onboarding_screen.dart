@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../exports.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -375,7 +377,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     ? _controller.animateToPage(1,
                                         duration: const Duration(milliseconds: 500),
                                         curve: Curves.linearToEaseOut)
-                                    : {};
+                                    : {updateStatusOfSeen(true)};
                               },
                             ))
                       ],
@@ -385,5 +387,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         borderRadius: BorderRadius.circular(15),
       ),
     );
+  }
+
+  void updateStatusOfSeen(bool seen) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool("seen", seen);
   }
 }

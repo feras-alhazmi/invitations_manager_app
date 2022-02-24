@@ -6,19 +6,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  initApp();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Invitations Manager App',
-      theme: AppTheme.appTheme(),
-      debugShowCheckedModeBanner: false,
-      home: const InvitationScreen(),
-    );
-  }
-}
