@@ -1055,6 +1055,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                       "content": contentController.text,
                                       "location": locationController.text,
                                       "date": newDateTime,
+                                      "updated" : true,
+                                      "updated_date" : DateTime.now(),
                                       "regards": regardsController.text,
                                     }).then((value){
                                       showDialog(

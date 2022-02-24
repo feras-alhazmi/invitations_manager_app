@@ -139,18 +139,21 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
 
 
 
+  late DateTime date;
+  late DateTime updatedDate;
   @override
   void initState() {
     // TODO: implement initState
     Utils.setSystemUI(const Color(0xffEDF0F3), Brightness.dark);
-
+    date = widget.document["date"].toDate();
+    updatedDate = widget.document["updated_date"].toDate();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Timestamp t = widget.document["date"];
-    DateTime date = t.toDate();
+
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -224,7 +227,9 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                             color: const Color(0xffA90641)),
                         width: 190,
                         alignment: Alignment.center,
-                        child: Text("Updated ${Jiffy(date).yMMMMd}",
+                        child: widget.document["updated"] ? Text("Updated ${Jiffy(updatedDate).yMMMMd}",
+                            style: CustomTextStyle()
+                                .textStyle(14, Colors.white)) : Text("No Updated since created",
                             style: CustomTextStyle()
                                 .textStyle(14, Colors.white)),
                       ),
