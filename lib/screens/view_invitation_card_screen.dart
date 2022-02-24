@@ -99,7 +99,7 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
                                            borderRadius: BorderRadius.circular(15),
                                            color: Colors.transparent,
                                            border: Border.all(
-                                             color: Color(0xffA90641),
+                                             color: const Color(0xffA90641),
                                            )),
                                        width: 130,
                                        height: 33,
@@ -107,7 +107,7 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
                                        child: Text(
                                          "Invitation Card",
                                          style: CustomTextStyle().textStyle(
-                                             14, Color(0xffA90641),
+                                             14, const Color(0xffA90641),
                                              fontWeight: FontWeight.w500),
                                          textScaleFactor: 1.0,
                                        ),

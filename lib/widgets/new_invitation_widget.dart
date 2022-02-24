@@ -1,4 +1,3 @@
-
 import '../exports.dart';
 
 class NewInvitationWidget extends StatefulWidget {
@@ -149,8 +148,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                           child: Text(
                                               titleSuggestions[index]["text"],
                                               style: CustomTextStyle()
-                                                  .textStyle(
-                                                      12, Color(0xff423C3C))),
+                                                  .textStyle(12,
+                                                      const Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
@@ -224,7 +223,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       TextButton(
                                         style: TextButton.styleFrom(
                                           elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
+                                          backgroundColor:
+                                              const Color(0xff2A7B4F),
                                         ),
                                         child: Text(
                                           "Next",
@@ -330,7 +330,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       TextButton(
                                         style: TextButton.styleFrom(
                                           elevation: 0,
-                                          backgroundColor: Color(0xffB6351C),
+                                          backgroundColor:
+                                              const Color(0xffB6351C),
                                         ),
                                         child: Text(
                                           "Back",
@@ -346,7 +347,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       TextButton(
                                         style: TextButton.styleFrom(
                                           elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
+                                          backgroundColor:
+                                              const Color(0xff2A7B4F),
                                         ),
                                         child: Text(
                                           "Next",
@@ -407,8 +409,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                           child: Text(
                                               contentSuggestions[index]["text"],
                                               style: CustomTextStyle()
-                                                  .textStyle(
-                                                      12, Color(0xff423C3C))),
+                                                  .textStyle(12,
+                                                      const Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
@@ -483,7 +485,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       TextButton(
                                         style: TextButton.styleFrom(
                                           elevation: 0,
-                                          backgroundColor: Color(0xffB6351C),
+                                          backgroundColor:
+                                              const Color(0xffB6351C),
                                         ),
                                         child: Text(
                                           "Back",
@@ -499,7 +502,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                       TextButton(
                                         style: TextButton.styleFrom(
                                           elevation: 0,
-                                          backgroundColor: Color(0xff2A7B4F),
+                                          backgroundColor:
+                                              const Color(0xff2A7B4F),
                                         ),
                                         child: Text(
                                           "Next",
@@ -617,7 +621,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                     TextButton(
                                       style: TextButton.styleFrom(
                                         elevation: 0,
-                                        backgroundColor: Color(0xff2A7B4F),
+                                        backgroundColor:
+                                            const Color(0xff2A7B4F),
                                       ),
                                       child: Text(
                                         "Next",
@@ -677,8 +682,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                           child: Text(
                                               regardsSuggestions[index]["text"],
                                               style: CustomTextStyle()
-                                                  .textStyle(
-                                                      12, Color(0xff423C3C))),
+                                                  .textStyle(12,
+                                                      const Color(0xff423C3C))),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 4, horizontal: 8),
                                         ),
@@ -916,7 +921,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                   TextButton(
                                     style: TextButton.styleFrom(
                                       elevation: 0,
-                                      backgroundColor: Color(0xffB6351C),
+                                      backgroundColor: const Color(0xffB6351C),
                                     ),
                                     child: Text(
                                       "Back",
@@ -931,7 +936,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                   TextButton(
                                     style: TextButton.styleFrom(
                                       elevation: 0,
-                                      backgroundColor: Color(0xff2A7B4F),
+                                      backgroundColor: const Color(0xff2A7B4F),
                                     ),
                                     child: Text(
                                       "View",

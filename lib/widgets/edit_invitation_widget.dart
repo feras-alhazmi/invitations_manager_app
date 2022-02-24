@@ -4,6 +4,7 @@ import 'package:dash_invitation_app/exports.dart';
 
 class EditInvitationWidget extends StatefulWidget {
   final DocumentSnapshot document;
+
   const EditInvitationWidget(this.document, {Key? key}) : super(key: key);
 
   @override
@@ -13,40 +14,45 @@ class EditInvitationWidget extends StatefulWidget {
 class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   int _currentStep = 0;
 
-  late TextEditingController  welcomeSentenceController;
+  late TextEditingController welcomeSentenceController;
   bool welcomeSentenceValidate = false;
 
   late TextEditingController inviteeNameController;
   bool inviteeNameValidate = false;
 
-  late TextEditingController contentController ;
+  late TextEditingController contentController;
+
   bool contentValidate = false;
 
-  late TextEditingController locationController ;
+  late TextEditingController locationController;
+
   bool locationValidate = false;
 
-  late TextEditingController regardsController ;
+  late TextEditingController regardsController;
+
   bool regardsValidate = false;
 
+  late DateTime newDateTime;
 
-
-  late DateTime newDateTime ;
-  late DateTime date ;
+  late DateTime date;
 
   @override
   void initState() {
-    welcomeSentenceController = TextEditingController(text:widget.document["welcome_sentence"]);
-    locationController = TextEditingController(text: widget.document["location"]);
+    welcomeSentenceController =
+        TextEditingController(text: widget.document["welcome_sentence"]);
+    locationController =
+        TextEditingController(text: widget.document["location"]);
     regardsController = TextEditingController(text: widget.document["regards"]);
     inviteeNameController = TextEditingController(text: widget.document["to"]);
     contentController = TextEditingController(text: widget.document["content"]);
 
     Timestamp t = widget.document["date"];
-     date = t.toDate();
+    date = t.toDate();
     newDateTime = date;
 
     super.initState();
   }
+
   @override
   void dispose() {
     inviteeNameController.dispose();
@@ -112,13 +118,9 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
       "color": const Color(0xffD991AF),
     },
   ];
+
   @override
-
   Widget build(BuildContext context) {
-
-
-
-
     return Container(
       margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       // height: 490,
@@ -138,13 +140,11 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
             ),
             Text(
               "Edit Invitation Card",
-              style: CustomTextStyle()
-                  .textStyle(16, Colors.black),
+              style: CustomTextStyle().textStyle(16, Colors.black),
             ),
             const Divider(
               color: Colors.black12,
             ),
-
             Flexible(
               child: Stepper(
                 type: StepperType.vertical,
@@ -157,8 +157,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                   Step(
                     title: Text(
                       "Welcome Sentence",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "type a welcome sentence to the person you want to invitee",
@@ -170,27 +169,23 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                         child: Column(
                           children: [
                             Wrap(
-                              children: List.generate(
-                                  titleSuggestions.length, (index) {
+                              children: List.generate(titleSuggestions.length,
+                                  (index) {
                                 return InkWell(
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: titleSuggestions[index]
-                                        ["color"],
-                                        borderRadius:
-                                        BorderRadius.circular(2)),
-                                    child: Text(
-                                        titleSuggestions[index]["text"],
-                                        style: CustomTextStyle()
-                                            .textStyle(
-                                            12, Color(0xff423C3C))),
+                                        color: titleSuggestions[index]["color"],
+                                        borderRadius: BorderRadius.circular(2)),
+                                    child: Text(titleSuggestions[index]["text"],
+                                        style: CustomTextStyle().textStyle(
+                                            12, const Color(0xff423C3C))),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 8),
                                   ),
                                   onTap: () {
                                     setState(() {
                                       welcomeSentenceController.text =
-                                      titleSuggestions[index]["text"];
+                                          titleSuggestions[index]["text"];
                                       welcomeSentenceValidate = false;
                                     });
                                   },
@@ -202,8 +197,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             const Gap(10),
                             TextFormField(
                               controller: welcomeSentenceController,
-                              style: CustomTextStyle()
-                                  .textStyle(12, Colors.black),
+                              style:
+                                  CustomTextStyle().textStyle(12, Colors.black),
                               decoration: InputDecoration(
                                 errorText: welcomeSentenceValidate
                                     ? "Please Enter the invitee name to continue"
@@ -212,30 +207,29 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 hintStyle: CustomTextStyle()
                                     .textStyle(12, Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide:
-                                  const BorderSide(color: Colors.red),
+                                      const BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 isDense: true,
                               ),
                               onChanged: (value) {
-                                if (welcomeSentenceController.text
-                                    .trim() ==
+                                if (welcomeSentenceController.text.trim() ==
                                     "") {
                                   setState(() {
                                     welcomeSentenceValidate = true;
@@ -257,7 +251,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: Color(0xff2A7B4F),
+                                    backgroundColor: const Color(0xff2A7B4F),
                                   ),
                                   child: Text(
                                     "Next",
@@ -267,9 +261,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   // onPressed: continued,
                                   onPressed: () {
                                     if (welcomeSentenceController
-                                        .text.isEmpty ||
-                                        welcomeSentenceController.text
-                                            .trim() ==
+                                            .text.isEmpty ||
+                                        welcomeSentenceController.text.trim() ==
                                             "") {
                                       setState(() {
                                         welcomeSentenceValidate = true;
@@ -287,14 +280,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 0
                         ? StepState.editing
                         : (_currentStep > 0
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                   Step(
                     title: Text(
                       "Invitee Name",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "type the name of the person you want to invite",
@@ -309,8 +301,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                               controller: inviteeNameController,
                               minLines: 2,
                               maxLines: 3,
-                              style: CustomTextStyle()
-                                  .textStyle(12, Colors.black),
+                              style:
+                                  CustomTextStyle().textStyle(12, Colors.black),
                               decoration: InputDecoration(
                                 errorText: inviteeNameValidate
                                     ? "Please Enter the invitee name to continue"
@@ -319,30 +311,29 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 hintStyle: CustomTextStyle()
                                     .textStyle(12, Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide:
-                                  const BorderSide(color: Colors.red),
+                                      const BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 isDense: true,
                               ),
                               onChanged: (value) {
-                                if (inviteeNameController.text.trim() ==
-                                    "") {
+                                if (inviteeNameController.text.trim() == "") {
                                   setState(() {
                                     inviteeNameValidate = true;
                                   });
@@ -363,14 +354,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: Color(0xffB6351C),
+                                    backgroundColor: const Color(0xffB6351C),
                                   ),
                                   child: Text(
                                     "Back",
                                     style: CustomTextStyle()
                                         .textStyle(12, Colors.white),
                                   ),
-// onPressed: continued,
                                   onPressed: () {
                                     cancel();
                                   },
@@ -379,7 +369,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: Color(0xff2A7B4F),
+                                    backgroundColor: const Color(0xff2A7B4F),
                                   ),
                                   child: Text(
                                     "Next",
@@ -388,10 +378,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   ),
                                   // onPressed: continued,
                                   onPressed: () {
-                                    if (inviteeNameController
-                                        .text.isEmpty ||
-                                        inviteeNameController.text
-                                            .trim() ==
+                                    if (inviteeNameController.text.isEmpty ||
+                                        inviteeNameController.text.trim() ==
                                             "") {
                                       setState(() {
                                         inviteeNameValidate = true;
@@ -409,14 +397,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 1
                         ? StepState.editing
                         : (_currentStep > 1
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                   Step(
                     title: Text(
                       "Content",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "Enter the invitation content",
@@ -428,28 +415,25 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                         child: Column(
                           children: [
                             Wrap(
-                              children: List.generate(
-                                  contentSuggestions.length, (index) {
+                              children: List.generate(contentSuggestions.length,
+                                  (index) {
                                 return InkWell(
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: contentSuggestions[index]
-                                        ["color"],
-                                        borderRadius:
-                                        BorderRadius.circular(2)),
+                                            ["color"],
+                                        borderRadius: BorderRadius.circular(2)),
                                     child: Text(
                                         contentSuggestions[index]["text"],
-                                        style: CustomTextStyle()
-                                            .textStyle(
-                                            12, Color(0xff423C3C))),
+                                        style: CustomTextStyle().textStyle(
+                                            12, const Color(0xff423C3C))),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 8),
                                   ),
                                   onTap: () {
                                     setState(() {
                                       contentController.text =
-                                      contentSuggestions[index]
-                                      ["text"];
+                                          contentSuggestions[index]["text"];
                                       contentValidate = false;
                                     });
                                   },
@@ -461,35 +445,34 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             const Gap(10),
                             TextFormField(
                               controller: contentController,
-                              style: CustomTextStyle()
-                                  .textStyle(12, Colors.black),
+                              style:
+                                  CustomTextStyle().textStyle(12, Colors.black),
                               maxLines: 5,
                               decoration: InputDecoration(
                                 errorText: contentValidate
                                     ? "The content of the invitation is required"
                                     : null,
-                                hintText:
-                                "type your invitation content here",
+                                hintText: "type your invitation content here",
                                 hintStyle: CustomTextStyle()
                                     .textStyle(12, Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide:
-                                  const BorderSide(color: Colors.red),
+                                      const BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 isDense: true,
@@ -516,7 +499,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: Color(0xffB6351C),
+                                    backgroundColor: const Color(0xffB6351C),
                                   ),
                                   child: Text(
                                     "Back",
@@ -532,7 +515,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor: Color(0xff2A7B4F),
+                                    backgroundColor: const Color(0xff2A7B4F),
                                   ),
                                   child: Text(
                                     "Next",
@@ -542,8 +525,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   // onPressed: continued,
                                   onPressed: () {
                                     if (contentController.text.isEmpty ||
-                                        contentController.text.trim() ==
-                                            "") {
+                                        contentController.text.trim() == "") {
                                       setState(() {
                                         contentValidate = true;
                                       });
@@ -560,14 +542,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 2
                         ? StepState.editing
                         : (_currentStep > 2
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                   Step(
                     title: Text(
                       "Place",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "type the location",
@@ -580,33 +561,32 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                         children: [
                           TextFormField(
                             controller: locationController,
-                            style: CustomTextStyle()
-                                .textStyle(12, Colors.black),
+                            style:
+                                CustomTextStyle().textStyle(12, Colors.black),
                             decoration: InputDecoration(
                               errorText: locationValidate
                                   ? "Please Enter the location of the meeting"
                                   : null,
                               hintText: "place",
-                              hintStyle: CustomTextStyle()
-                                  .textStyle(12, Colors.grey),
+                              hintStyle:
+                                  CustomTextStyle().textStyle(12, Colors.grey),
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                const BorderSide(color: Colors.grey),
+                                    const BorderSide(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                const BorderSide(color: Colors.grey),
+                                    const BorderSide(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               errorBorder: OutlineInputBorder(
-                                borderSide:
-                                const BorderSide(color: Colors.red),
+                                borderSide: const BorderSide(color: Colors.red),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide:
-                                const BorderSide(color: Colors.grey),
+                                    const BorderSide(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               isDense: true,
@@ -633,8 +613,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                               TextButton(
                                 style: TextButton.styleFrom(
                                   elevation: 0,
-                                  backgroundColor:
-                                  const Color(0xffB6351C),
+                                  backgroundColor: const Color(0xffB6351C),
                                 ),
                                 child: Text(
                                   "Back",
@@ -650,7 +629,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                               TextButton(
                                 style: TextButton.styleFrom(
                                   elevation: 0,
-                                  backgroundColor: Color(0xff2A7B4F),
+                                  backgroundColor: const Color(0xff2A7B4F),
                                 ),
                                 child: Text(
                                   "Next",
@@ -660,8 +639,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 // onPressed: continued,
                                 onPressed: () {
                                   if (locationController.text.isEmpty ||
-                                      locationController.text.trim() ==
-                                          "") {
+                                      locationController.text.trim() == "") {
                                     setState(() {
                                       locationValidate = true;
                                     });
@@ -679,14 +657,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 3
                         ? StepState.editing
                         : (_currentStep > 3
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                   Step(
                     title: Text(
                       "Regards",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "type your own signature and regards",
@@ -698,28 +675,25 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                         child: Column(
                           children: [
                             Wrap(
-                              children: List.generate(
-                                  regardsSuggestions.length, (index) {
+                              children: List.generate(regardsSuggestions.length,
+                                  (index) {
                                 return InkWell(
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: regardsSuggestions[index]
-                                        ["color"],
-                                        borderRadius:
-                                        BorderRadius.circular(2)),
+                                            ["color"],
+                                        borderRadius: BorderRadius.circular(2)),
                                     child: Text(
                                         regardsSuggestions[index]["text"],
-                                        style: CustomTextStyle()
-                                            .textStyle(
-                                            12, Color(0xff423C3C))),
+                                        style: CustomTextStyle().textStyle(
+                                            12, const Color(0xff423C3C))),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 8),
                                   ),
                                   onTap: () {
                                     setState(() {
                                       regardsController.text =
-                                      regardsSuggestions[index]
-                                      ["text"];
+                                          regardsSuggestions[index]["text"];
                                       regardsValidate = false;
                                     });
                                   },
@@ -731,8 +705,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             const Gap(10),
                             TextFormField(
                               controller: regardsController,
-                              style: CustomTextStyle()
-                                  .textStyle(12, Colors.black),
+                              style:
+                                  CustomTextStyle().textStyle(12, Colors.black),
                               maxLines: 2,
                               decoration: InputDecoration(
                                 errorText: regardsValidate
@@ -742,23 +716,23 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 hintStyle: CustomTextStyle()
                                     .textStyle(12, Colors.grey),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide:
-                                  const BorderSide(color: Colors.red),
+                                      const BorderSide(color: Colors.red),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.grey),
+                                  borderSide:
+                                      const BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 isDense: true,
@@ -785,8 +759,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor:
-                                    const Color(0xffB6351C),
+                                    backgroundColor: const Color(0xffB6351C),
                                   ),
                                   child: Text(
                                     "Back",
@@ -802,8 +775,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     elevation: 0,
-                                    backgroundColor:
-                                    const Color(0xff2A7B4F),
+                                    backgroundColor: const Color(0xff2A7B4F),
                                   ),
                                   child: Text(
                                     "Next",
@@ -823,14 +795,13 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 4
                         ? StepState.editing
                         : (_currentStep > 4
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                   Step(
                     title: Text(
                       "Date",
-                      style:
-                      CustomTextStyle().textStyle(14, Colors.black),
+                      style: CustomTextStyle().textStyle(14, Colors.black),
                     ),
                     subtitle: Text(
                       "Pickup the date of the invitation",
@@ -843,14 +814,12 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                           width: double.infinity,
                           child: InkWell(
                             child: Container(
-                              padding:
-                              const EdgeInsets.symmetric(vertical: 8),
-                              margin:
-                              const EdgeInsets.symmetric(vertical: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              margin: const EdgeInsets.symmetric(vertical: 8),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color: const Color(0xffE4C2D1)
-                                    .withOpacity(0.80),
+                                color:
+                                    const Color(0xffE4C2D1).withOpacity(0.80),
                               ),
                               alignment: Alignment.center,
                               child: Text(Jiffy(newDateTime).yMMMEd,
@@ -859,47 +828,39 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             ),
                             onTap: () async {
                               // TODO: show calender and pass the current date
-                              DateTime? date =
-                              await showRoundedDatePicker(
+                              DateTime? date = await showRoundedDatePicker(
                                 context: context,
                                 firstDate: newDateTime,
-                                lastDate:
-                                DateTime(DateTime.now().year + 5),
+                                lastDate: DateTime(DateTime.now().year + 5),
                                 initialDate: newDateTime,
                                 background: Colors.transparent,
                                 height: 350,
                                 theme: ThemeData(
                                   shadowColor: Colors.transparent,
                                   primaryColor:
-                                  Theme.of(context).backgroundColor,
+                                      Theme.of(context).backgroundColor,
                                   dialogBackgroundColor: Colors.white,
                                   textTheme: const TextTheme(
-                                    caption:
-                                    TextStyle(color: Colors.black),
-                                    subtitle1:
-                                    TextStyle(color: Colors.black),
-                                    bodyText1:
-                                    TextStyle(color: Colors.black),
-                                    bodyText2:
-                                    TextStyle(color: Colors.black),
+                                    caption: TextStyle(color: Colors.black),
+                                    subtitle1: TextStyle(color: Colors.black),
+                                    bodyText1: TextStyle(color: Colors.black),
+                                    bodyText2: TextStyle(color: Colors.black),
                                   ),
                                 ),
                                 textDirection: TextDirection.ltr,
-                                styleDatePicker:
-                                MaterialRoundedDatePickerStyle(
+                                styleDatePicker: MaterialRoundedDatePickerStyle(
                                   colorArrowNext: Colors.black,
                                   colorArrowPrevious: Colors.black,
                                   backgroundPicker:
-                                  Theme.of(context).backgroundColor,
+                                      Theme.of(context).backgroundColor,
                                   textStyleDayHeader: const TextStyle(
                                     color: Colors.black,
                                   ),
-                                  textStyleMonthYearHeader:
-                                  const TextStyle(
+                                  textStyleMonthYearHeader: const TextStyle(
                                     color: Colors.black,
                                   ),
                                   textStyleCurrentDayOnCalendar:
-                                  const TextStyle(
+                                      const TextStyle(
                                     color: Colors.black,
                                   ),
                                   textStyleDayButton: const TextStyle(
@@ -907,25 +868,21 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   textStyleDayOnCalendar: const TextStyle(
                                     color: Colors.black,
                                   ),
-                                  textStyleButtonPositive:
-                                  const TextStyle(
+                                  textStyleButtonPositive: const TextStyle(
                                     color: Colors.black,
                                   ),
-                                  textStyleButtonNegative:
-                                  const TextStyle(
+                                  textStyleButtonNegative: const TextStyle(
                                     color: Colors.black,
                                   ),
                                   textStyleYearButton: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
-                                  paddingMonthHeader:
-                                  const EdgeInsets.all(12),
+                                  paddingMonthHeader: const EdgeInsets.all(12),
                                   decorationDateSelected: BoxDecoration(
                                     color: Theme.of(context)
                                         .scaffoldBackgroundColor,
-                                    borderRadius:
-                                    BorderRadius.circular(35),
+                                    borderRadius: BorderRadius.circular(35),
                                   ),
                                 ),
                               );
@@ -949,7 +906,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             TextButton(
                               style: TextButton.styleFrom(
                                 elevation: 0,
-                                backgroundColor: Color(0xffB6351C),
+                                backgroundColor: const Color(0xffB6351C),
                               ),
                               child: Text(
                                 "Back",
@@ -964,7 +921,7 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                             TextButton(
                               style: TextButton.styleFrom(
                                 elevation: 0,
-                                backgroundColor: Color(0xff2A7B4F),
+                                backgroundColor: const Color(0xff2A7B4F),
                               ),
                               child: Text(
                                 "Done",
@@ -977,68 +934,87 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                   setState(() {
                                     regardsValidate = true;
                                   });
-                                }
-                                else {
-
-                                  if(welcomeSentenceController.text == widget.document["welcome_sentence"] &&
-                                      inviteeNameController.text == widget.document["to"] &&
-                                      contentController.text == widget.document["content"] &&
-                                      locationController.text == widget.document["location"] &&
-                                      regardsController.text == widget.document["regards"] &&
-                                  newDateTime == date
-                                  ){
+                                } else {
+                                  if (welcomeSentenceController.text ==
+                                          widget.document["welcome_sentence"] &&
+                                      inviteeNameController.text ==
+                                          widget.document["to"] &&
+                                      contentController.text ==
+                                          widget.document["content"] &&
+                                      locationController.text ==
+                                          widget.document["location"] &&
+                                      regardsController.text ==
+                                          widget.document["regards"] &&
+                                      newDateTime == date) {
                                     showDialog(
                                       context: context,
                                       builder: (dialogContext) {
                                         return AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10),
-                                            ),
-                                            backgroundColor: const Color(0xffEDF0F3),
-                                            contentPadding: const EdgeInsets.fromLTRB(32,32,32,12),
-                                            content: Stack(
-                                              alignment: Alignment.center,
-                                              children: [
-                                                Transform.translate(offset: const Offset(0,37.5),
-                                                  child: Text("You didn't change anything!", style: CustomTextStyle().textStyle(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          backgroundColor:
+                                              const Color(0xffEDF0F3),
+                                          contentPadding:
+                                              const EdgeInsets.fromLTRB(
+                                                  32, 32, 32, 12),
+                                          content: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Transform.translate(
+                                                offset: const Offset(0, 37.5),
+                                                child: Text(
+                                                  "You didn't change anything!",
+                                                  style: CustomTextStyle()
+                                                      .textStyle(
                                                     16,
                                                     Colors.black,
                                                     fontWeight: FontWeight.bold,
-                                                  ),),),
-                                                Transform.translate(
-                                                  offset: const Offset(0, -25),
-                                                  child:  Container(
-                                                    child: const CircleAvatar(
-                                                      backgroundImage:
-                                                      AssetImage("assets/images/dash_designer2.png"),
-                                                      radius: 50,
-                                                      backgroundColor: Colors.transparent,
-                                                    ),
-                                                    decoration: BoxDecoration(
-
-                                                      borderRadius: BorderRadius.circular(100),
-                                                    ),
                                                   ),
-                                                )
-                                              ],
-                                            ),
+                                                ),
+                                              ),
+                                              Transform.translate(
+                                                offset: const Offset(0, -25),
+                                                child: Container(
+                                                  child: const CircleAvatar(
+                                                    backgroundImage: AssetImage(
+                                                        "assets/images/dash_designer2.png"),
+                                                    radius: 50,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                           actions: [
                                             InkWell(
                                               child: Container(
                                                 padding:
-                                                const EdgeInsets.symmetric(vertical: 8),
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 8),
                                                 margin:
-                                                const EdgeInsets.fromLTRB( 8,0,8,8),
+                                                    const EdgeInsets.fromLTRB(
+                                                        8, 0, 8, 8),
                                                 decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(15),
-                                                    color: Colors.green.shade800
-                                                ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    color:
+                                                        Colors.green.shade800),
                                                 alignment: Alignment.center,
                                                 child: Text("Get it",
                                                     style: CustomTextStyle()
-                                                        .textStyle(16, Colors.white)),
+                                                        .textStyle(
+                                                            16, Colors.white)),
                                               ),
-                                              onTap: (){
+                                              onTap: () {
                                                 Navigator.pop(context);
                                               },
                                             )
@@ -1046,39 +1022,52 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                                         );
                                       },
                                     );
-                                  }else{
-                                    FirebaseFirestore.instance.collection("invitations").doc(widget.document.id
-                                    ).update({
+                                  } else {
+                                    FirebaseFirestore.instance
+                                        .collection("invitations")
+                                        .doc(widget.document.id)
+                                        .update({
                                       "welcome_sentence":
-                                      welcomeSentenceController.text,
+                                          welcomeSentenceController.text,
                                       "to": inviteeNameController.text,
                                       "content": contentController.text,
                                       "location": locationController.text,
                                       "date": newDateTime,
-                                      "updated" : true,
-                                      "updated_date" : DateTime.now(),
+                                      "updated": true,
+                                      "updated_date": DateTime.now(),
                                       "regards": regardsController.text,
-                                    }).then((value){
+                                    }).then((value) {
                                       showDialog(
                                         context: context,
                                         builder: (dialogContext) {
                                           return AlertDialog(
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                               ),
-                                              backgroundColor: const Color(0xffEDF0F3),
+                                              backgroundColor:
+                                                  const Color(0xffEDF0F3),
                                               elevation: 0.0,
                                               content: Stack(
                                                 alignment: Alignment.center,
                                                 children: [
-                                                  Transform.translate(offset: const Offset(0,37.5),
-                                                    child: Text("Edited Successfully", style: CustomTextStyle().textStyle(
-                                                      16,
-                                                      Colors.black,
-                                                      fontWeight: FontWeight.bold,
-                                                    ),),),
                                                   Transform.translate(
-                                                    offset: const Offset(0, -25),
+                                                    offset:
+                                                        const Offset(0, 37.5),
+                                                    child: Text(
+                                                      "Edited Successfully",
+                                                      style: CustomTextStyle()
+                                                          .textStyle(
+                                                        16,
+                                                        Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Transform.translate(
+                                                    offset:
+                                                        const Offset(0, -25),
                                                     child: AnimatedCheck(),
                                                   )
                                                 ],
@@ -1088,17 +1077,18 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
 
                                       Timer(
                                         const Duration(seconds: 1),
-                                            () {
-                                              Utils.setSystemUI(const Color(0xff19879C),Brightness.light);
+                                        () {
+                                          Utils.setSystemUI(
+                                              const Color(0xff19879C),
+                                              Brightness.light);
 
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                  const InvitationScreen()),
-                                                  (route) => false);
+                                                      const InvitationScreen()),
+                                              (route) => false);
                                         },
                                       );
-
                                     });
                                   }
                                 }
@@ -1112,8 +1102,8 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
                     state: _currentStep == 5
                         ? StepState.editing
                         : (_currentStep > 5
-                        ? StepState.complete
-                        : StepState.disabled),
+                            ? StepState.complete
+                            : StepState.disabled),
                   ),
                 ],
               ),
@@ -1135,5 +1125,4 @@ class _EditInvitationWidgetState extends State<EditInvitationWidget> {
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
-
 }

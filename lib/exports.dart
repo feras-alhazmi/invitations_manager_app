@@ -1,5 +1,4 @@
 export 'package:flutter/material.dart';
-export 'package:hexcolor/hexcolor.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:gap/gap.dart';
 export 'package:jiffy/jiffy.dart';
@@ -14,6 +13,9 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:image_gallery_saver/image_gallery_saver.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'package:screenshot/screenshot.dart';
+export 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+
 
 export 'models/app_theme.dart';
 export 'screens/Invitation_screen.dart';
@@ -26,3 +28,6 @@ export 'widgets/new_invitation_widget.dart';
 export 'widgets/edit_invitation_widget.dart';
 export 'screens/invitation_card_preview.dart';
 export 'utils/utils.dart';
+export 'screens/settings_screen.dart';
+export 'screens/onboarding_screen.dart';
+export 'screens/view_invitation_card_screen.dart';
