@@ -8,12 +8,7 @@ class InvitationScreen extends StatefulWidget {
 }
 
 class _InvitationScreenState extends State<InvitationScreen> {
-  int? invitationCreated = 0;
-
-  int? visitedDone = 0;
-
-
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
