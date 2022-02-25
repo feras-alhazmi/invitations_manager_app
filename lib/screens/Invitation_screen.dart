@@ -8,6 +8,17 @@ class InvitationScreen extends StatefulWidget {
 }
 
 class _InvitationScreenState extends State<InvitationScreen> {
+  int currentAvatarIndex = 0;
+  int currentImageIndex = 0;
+
+  getDefaultAvatarIndex() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    setState(() {
+      currentAvatarIndex = sharedPreferences.getInt("avatar_index")!;
+      currentImageIndex = sharedPreferences.getInt("image_index")!;
+    });
+  }
 
   List<String> imagesPath = [
     "assets/images/dash_designer-2.png",
@@ -15,7 +26,11 @@ class _InvitationScreenState extends State<InvitationScreen> {
     "assets/images/dash_dev-2.png",
   ];
 
-
+  @override
+  void initState() {
+    getDefaultAvatarIndex();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +69,11 @@ class _InvitationScreenState extends State<InvitationScreen> {
                               children: [
                                 // Gap(12),
                                 Container(
-                                  child: const CircleAvatar(
+                                  child: CircleAvatar(
                                     backgroundImage: AssetImage(
-                                        "assets/images/dash_manager.png"),
+                                        imagesPath[currentAvatarIndex]),
                                     radius: 50,
-                                    backgroundColor: Color(0xffDFE6E8),
+                                    backgroundColor: const Color(0xffDFE6E8),
                                   ),
                                   decoration: BoxDecoration(
                                     boxShadow: [
@@ -191,14 +206,17 @@ class _InvitationScreenState extends State<InvitationScreen> {
                       Align(
                         alignment: Alignment.topRight,
                         child: IconButton(
-                          icon: const Icon(Icons.settings,size: 20),
+                          icon: const Icon(Icons.settings, size: 20),
                           onPressed: () {
                             showDialog(
                               context: context,
                               builder: (dialogContext) {
-                                return const SettingsScreen(1,0);
+                                return SettingsScreen(
+                                    currentAvatarIndex, currentImageIndex);
                               },
-                            );
+                            ).then((value) {
+                              getDefaultAvatarIndex();
+                            });
                           },
                         ),
                       )
@@ -388,8 +406,10 @@ class _InvitationScreenState extends State<InvitationScreen> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: ((context) =>
-                                             SingleInvitationScreen(
-                                                document))));
+                                                SingleInvitationScreen(
+                                                    imagesPath[
+                                                        currentImageIndex],
+                                                    document))));
                                   });
                             },
                           ).toList(),
@@ -402,7 +422,7 @@ class _InvitationScreenState extends State<InvitationScreen> {
               showDialog(
                 context: context,
                 builder: (dialogContext) {
-                  return const NewInvitationWidget();
+                  return NewInvitationWidget(imagesPath[currentImageIndex]);
                 },
               );
               // Navigator.push(context, MaterialPageRoute(builder: (context){

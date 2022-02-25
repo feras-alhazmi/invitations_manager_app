@@ -1,9 +1,11 @@
 import 'package:dash_invitation_app/exports.dart';
 
 class SingleInvitationScreen extends StatefulWidget {
+  final String defaultImagePath;
   final DocumentSnapshot document;
 
-  const SingleInvitationScreen(this.document, {Key? key}) : super(key: key);
+  const SingleInvitationScreen(this.defaultImagePath, this.document, {Key? key})
+      : super(key: key);
 
   @override
   _SingleInvitationScreenState createState() => _SingleInvitationScreenState();
@@ -122,10 +124,9 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
     },
   ];
 
-
-
   late DateTime date;
   late DateTime updatedDate;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -137,8 +138,6 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
@@ -147,7 +146,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius:
-              const BorderRadius.vertical(bottom: Radius.circular(10)),
+                  const BorderRadius.vertical(bottom: Radius.circular(10)),
             ),
             height: MediaQuery.of(context).size.height * 0.88,
           ),
@@ -188,8 +187,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height * 0.10),
+                          height: MediaQuery.of(context).size.height * 0.10),
                       Container(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         margin: const EdgeInsets.symmetric(
@@ -200,8 +198,8 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                         width: 190,
                         alignment: Alignment.center,
                         child: Text("Create ${Jiffy(date).yMMMMd}",
-                            style: CustomTextStyle()
-                                .textStyle(14, Colors.black)),
+                            style:
+                                CustomTextStyle().textStyle(14, Colors.black)),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -212,35 +210,35 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                             color: const Color(0xffA90641)),
                         width: 190,
                         alignment: Alignment.center,
-                        child: widget.document["updated"] ? Text("Updated ${Jiffy(updatedDate).yMMMMd}",
-                            style: CustomTextStyle()
-                                .textStyle(14, Colors.white)) : Text("No Updated since created",
-                            style: CustomTextStyle()
-                                .textStyle(14, Colors.white)),
+                        child: widget.document["updated"]
+                            ? Text("Updated ${Jiffy(updatedDate).yMMMMd}",
+                                style: CustomTextStyle()
+                                    .textStyle(14, Colors.white))
+                            : Text("No Updated since created",
+                                style: CustomTextStyle()
+                                    .textStyle(14, Colors.white)),
                       ),
                       const Gap(8),
                       Stack(
                         children: [
                           Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 12),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.45,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.45,
                                 width: double.infinity,
                                 child: ClipPath(
                                   clipper: PointsClipper(),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: const Color(0xffEDF0F3),
-                                      borderRadius:
-                                      BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10),
                                       boxShadow: [
                                         BoxShadow(
-                                            color: Colors.black
-                                                .withOpacity(0.15),
+                                            color:
+                                                Colors.black.withOpacity(0.15),
                                             offset: const Offset(0, 0),
                                             spreadRadius: 2,
                                             blurRadius: 2)
@@ -251,88 +249,74 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                     child: Stack(
                                       children: [
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 24),
                                           child: Align(
                                             alignment: Alignment.topLeft,
                                             child: Row(
-                                              mainAxisSize:
-                                              MainAxisSize.min,
+                                              mainAxisSize: MainAxisSize.min,
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                                  CrossAxisAlignment.center,
                                               mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .center,
+                                                      CrossAxisAlignment.center,
                                                   mainAxisSize:
-                                                  MainAxisSize.min,
+                                                      MainAxisSize.min,
                                                   children: [
                                                     const Icon(
-                                                      MdiIcons
-                                                          .mapMarkerCheck,
-                                                      color:
-                                                      Color(0xffA90641),
+                                                      MdiIcons.mapMarkerCheck,
+                                                      color: Color(0xffA90641),
                                                       size: 30,
                                                     ),
                                                     Text(
-                                                      widget.document[
-                                                      "location"],
-                                                      style:
-                                                      CustomTextStyle()
+                                                      widget
+                                                          .document["location"],
+                                                      style: CustomTextStyle()
                                                           .textStyle(
                                                         14,
-                                                        const Color(
-                                                            0xff7A7A7A),
+                                                        const Color(0xff7A7A7A),
                                                       ),
                                                     )
                                                   ],
                                                 ),
                                                 Container(
                                                   margin: const EdgeInsets
-                                                      .symmetric(
+                                                          .symmetric(
                                                       horizontal: 12),
                                                   height: 35,
                                                   width: 2,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius
-                                                        .circular(5),
-                                                    color: const Color(
-                                                        0xffD1D1D1),
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color:
+                                                        const Color(0xffD1D1D1),
                                                   ),
                                                 ),
                                                 Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .center,
+                                                      CrossAxisAlignment.center,
                                                   mainAxisSize:
-                                                  MainAxisSize.min,
+                                                      MainAxisSize.min,
                                                   children: [
                                                     const Icon(
-                                                      MdiIcons
-                                                          .calendarCheck,
-                                                      color:
-                                                      Color(0xffB9D800),
+                                                      MdiIcons.calendarCheck,
+                                                      color: Color(0xffB9D800),
                                                       size: 30,
                                                     ),
                                                     Text(
                                                       Jiffy(date).yMMMd,
-                                                      style:
-                                                      CustomTextStyle()
+                                                      style: CustomTextStyle()
                                                           .textStyle(
                                                         14,
-                                                        const Color(
-                                                            0xff7A7A7A),
+                                                        const Color(0xff7A7A7A),
                                                       ),
                                                     )
                                                   ],
@@ -346,30 +330,30 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               const Gap(100),
                                               Row(
                                                 children: [
                                                   Text(
                                                     widget.document[
-                                                    "welcome_sentence"],
+                                                        "welcome_sentence"],
                                                     style: CustomTextStyle()
-                                                        .textStyle(18,
-                                                        Colors.black,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
+                                                        .textStyle(
+                                                            18, Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                   const Gap(3),
                                                   Text(
                                                     widget.document["to"],
                                                     style: CustomTextStyle()
-                                                        .textStyle(18,
-                                                        Colors.black,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500),
+                                                        .textStyle(
+                                                            18, Colors.black,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                 ],
                                               ),
@@ -378,14 +362,14 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                                 widget.document["content"],
                                                 style: CustomTextStyle()
                                                     .textStyle(
-                                                    16, Colors.black),
+                                                        16, Colors.black),
                                               ),
                                               const Gap(24),
                                               Text(
                                                 widget.document["regards"],
                                                 style: CustomTextStyle()
                                                     .textStyle(
-                                                    16, Colors.black),
+                                                        16, Colors.black),
                                               ),
                                             ],
                                           ),
@@ -397,23 +381,22 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                               ),
                             ),
                           ),
-                            Hero(
-                            tag: widget.document.id,
-    child: Align(
-                            alignment: Alignment.center,
-                            child: Transform.translate(
-                              offset: const Offset(100, -70),
-                              child: Image.asset(
-                                "assets/images/dash_designer-2.png",
-                                width: 300,
-                                height: 260,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          )),
+                          Hero(
+                              tag: widget.document.id,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Transform.translate(
+                                  offset: const Offset(100, -70),
+                                  child: Image.asset(
+                                    widget.defaultImagePath,
+                                    width: 300,
+                                    height: 260,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )),
                         ],
                       ),
-
                       const Gap(12),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -424,26 +407,23 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                             return InkWell(
                               child: Container(
                                 height: 100,
-                                width: MediaQuery.of(context).size.width *
-                                    0.28,
+                                width: MediaQuery.of(context).size.width * 0.28,
                                 decoration: BoxDecoration(
                                     color: const Color(0xffEDF0F3),
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Colors.black
-                                              .withOpacity(0.15),
+                                          color: Colors.black.withOpacity(0.15),
                                           offset: const Offset(0, 0),
                                           spreadRadius: 2,
                                           blurRadius: 2)
                                     ]),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 12),
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 6),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 6),
                                 child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       buttons[index]["icon"],
                                       const Spacer(),
@@ -461,29 +441,36 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                                       elevation: 10,
                                       enableDrag: true,
                                       isScrollControlled: true,
-                                      backgroundColor: Theme.of(context).backgroundColor,
+                                      backgroundColor:
+                                          Theme.of(context).backgroundColor,
                                       shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+                                            topLeft: Radius.circular(15),
+                                            topRight: Radius.circular(15)),
                                       ),
-                                      builder: (context) =>  EditInvitationWidget(widget.document));
-
+                                      builder: (context) =>
+                                          EditInvitationWidget(
+                                              widget.document));
                                 } else {
                                   index == 1
                                       ? WarringDialog().showWarringDialog(
-                                      widget.document.id,
-                                      "Are Your Sure?",
-                                      "You can't restore this card anymore it's will be destroyed",
-                                      context,
-                                      "Delete",
-                                      "Keep it",
-                                      functionOfYesButton: () {},
-                                      functionOfNoButton: () {
-                                      })
+                                          widget.document.id,
+                                          "Are Your Sure?",
+                                          "You can't restore this card anymore it's will be destroyed",
+                                          context,
+                                          "Delete",
+                                          "Keep it",
+                                          functionOfYesButton: () {},
+                                          functionOfNoButton: () {})
                                       : {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: ((context) => SaveInvitationCardScreen(widget.document))))
-
-                                  };
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      SaveInvitationCardScreen(
+                                                          widget
+                                                              .defaultImagePath,
+                                                          widget.document))))
+                                        };
                                 }
                               },
                             );
@@ -498,6 +485,4 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
       ),
     );
   }
-
-
 }

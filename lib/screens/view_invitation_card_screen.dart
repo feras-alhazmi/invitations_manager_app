@@ -4,9 +4,10 @@ import 'package:dash_invitation_app/exports.dart';
 
 
 class SaveInvitationCardScreen extends StatefulWidget {
+  final String defaultImagePath;
   final DocumentSnapshot document;
 
-  const SaveInvitationCardScreen(this.document, {Key? key}) : super(key: key);
+  const SaveInvitationCardScreen(this.defaultImagePath,this.document, {Key? key}) : super(key: key);
 
   @override
   _SaveInvitationCardScreenState createState() =>
@@ -239,7 +240,7 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
                          child: Transform.translate(
                            offset: const Offset(110, 150),
                            child: Image.asset(
-                             "assets/images/dash_designer-2.png",
+                             widget.defaultImagePath,
                              width: 300,
                              height: 260,
                              fit: BoxFit.cover,

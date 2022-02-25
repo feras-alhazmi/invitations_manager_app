@@ -181,20 +181,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 40,
-                    margin: const EdgeInsets.symmetric(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 12),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.green.shade800,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text("Save Changes",
-                        style: CustomTextStyle().textStyle(16, Colors.white,
-                            fontWeight: FontWeight.w500)),
-                  ),
+                    child: InkWell(
+                      child: Container(
+                        height: 40,
+
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.green.shade800,
+                        ),
+                        alignment: Alignment.center,
+                        child: Text("Save Changes",
+                            style: CustomTextStyle().textStyle(16, Colors.white,
+                                fontWeight: FontWeight.w500)),
+                      ),
+                      onTap: () async {
+                        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                        setState(() {
+                          sharedPreferences.setInt("avatar_index", avatarTemp);
+                          sharedPreferences.setInt("image_index", cardAvatarTemp);
+                        });
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  )
                 )
               ],
             )),

@@ -3,9 +3,10 @@ import 'dart:async';
 import '../exports.dart';
 
 class InvitationCardPreview extends StatefulWidget {
+  final String defaultImagePath;
   final Map<String, dynamic> invitation;
 
-  const InvitationCardPreview(this.invitation, {Key? key}) : super(key: key);
+  const InvitationCardPreview(this.defaultImagePath,this.invitation, {Key? key}) : super(key: key);
 
   @override
   _InvitationCardPreviewState createState() => _InvitationCardPreviewState();
@@ -236,7 +237,7 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                         child: Transform.translate(
                           offset: const Offset(100, -70),
                           child: Image.asset(
-                            "assets/images/dash_designer-2.png",
+                            widget.defaultImagePath,
                             width: 300,
                             height: 260,
                             fit: BoxFit.cover,

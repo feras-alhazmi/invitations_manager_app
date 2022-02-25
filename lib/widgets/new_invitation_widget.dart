@@ -1,7 +1,10 @@
 import '../exports.dart';
 
 class NewInvitationWidget extends StatefulWidget {
-  const NewInvitationWidget({Key? key}) : super(key: key);
+  final String defaultImagePath;
+
+  const NewInvitationWidget(this.defaultImagePath, {Key? key})
+      : super(key: key);
 
   @override
   _NewInvitationWidgetState createState() => _NewInvitationWidgetState();
@@ -954,7 +957,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) {
-                                          return InvitationCardPreview({
+                                          return InvitationCardPreview(
+                                              widget.defaultImagePath, {
                                             "welcome_sentence":
                                                 welcomeSentenceController.text,
                                             "to": inviteeNameController.text,
@@ -962,6 +966,8 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                             "location": locationController.text,
                                             "date": newDateTime,
                                             "regards": regardsController.text,
+                                            "updated": false,
+                                            "updated_date": newDateTime,
                                           });
                                         }));
                                       }

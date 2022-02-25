@@ -1,5 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../exports.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -13,9 +11,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final PageController _controller = PageController(
     initialPage: 0,
   );
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
-
   int temp = 0;
+
+  setDefaultAvatarIndex() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setInt("avatar_index", 1);
+    sharedPreferences.setInt("image_index", 0);
+  }
+
+  @override
+  void initState() {
+    setDefaultAvatarIndex();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -233,7 +241,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     const Gap(5),
                     Text(
-                      "Invite New Friend to meet!",
+                      "Inviting New Friend to meet!",
                       style: CustomTextStyle().textStyle(
                         12,
                         const Color(0xff19879C),
@@ -266,7 +274,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     const Gap(5),
                     Text(
-                      "Mange Your Invitation easy!",
+                      "Manage Your Invitations easy!",
                       style: CustomTextStyle().textStyle(
                         12,
                         const Color(0xff19879C),
@@ -373,11 +381,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     ],
                                   )),
                               onTap: () {
-                                temp == 0
-                                    ? _controller.animateToPage(1,
-                                        duration: const Duration(milliseconds: 500),
-                                        curve: Curves.linearToEaseOut)
-                                    : {updateStatusOfSeen(true)};
+                                if (temp == 0) {
+                                  _controller.animateToPage(1,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      curve: Curves.linearToEaseOut);
+                                } else {
+                                  updateStatusOfSeen(true);
+
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) {
+                                    return const InvitationScreen();
+                                  }));
+                                }
                               },
                             ))
                       ],
