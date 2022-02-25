@@ -105,8 +105,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     )),
                                 child: Image.asset(
                                   imagesPath[index],
-                                  width: 95,
-                                  height: 95,
+                                  width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
+                                  height: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -162,8 +162,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     )),
                                 child: Image.asset(
                                   imagesPath[index],
-                                  width: 95,
-                                  height: 95,
+                                  width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
+                                  height: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
                                   fit: BoxFit.cover,
                                 ),
                               ),

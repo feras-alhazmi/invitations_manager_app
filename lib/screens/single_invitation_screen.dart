@@ -125,6 +125,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
   ];
 
   late DateTime date;
+  late DateTime createdDate;
   late DateTime updatedDate;
 
   @override
@@ -132,6 +133,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
     // TODO: implement initState
     Utils.setSystemUI(const Color(0xffEDF0F3), Brightness.dark);
     date = widget.document["date"].toDate();
+    createdDate = widget.document["created_date"].toDate();
     updatedDate = widget.document["updated_date"].toDate();
     super.initState();
   }
@@ -197,7 +199,7 @@ class _SingleInvitationScreenState extends State<SingleInvitationScreen> {
                             color: const Color(0xffD0DF72)),
                         width: 190,
                         alignment: Alignment.center,
-                        child: Text("Create ${Jiffy(date).yMMMMd}",
+                        child: Text("Create ${Jiffy(createdDate).yMMMMd}",
                             style:
                                 CustomTextStyle().textStyle(14, Colors.black)),
                       ),

@@ -967,6 +967,7 @@ class _NewInvitationWidgetState extends State<NewInvitationWidget> {
                                             "date": newDateTime,
                                             "regards": regardsController.text,
                                             "updated": false,
+                                            "created_date" : DateTime.now(),
                                             "updated_date": newDateTime,
                                           });
                                         }));
