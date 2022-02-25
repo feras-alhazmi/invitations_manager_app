@@ -58,200 +58,204 @@ class _SaveInvitationCardScreenState extends State<SaveInvitationCardScreen> {
           ),
           body: Stack(
            children: [
-             Screenshot(
-               controller: screenShopController,
-               child:Container(
+             Container(
                  color: Theme.of(context).scaffoldBackgroundColor,
                  margin: const EdgeInsets.only(bottom: 100),
-                 child: Stack(
-                   children: [
-                     Align(
-                       alignment: Alignment.center,
-                       child: Padding(
-                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 50),
-                         child: ClipRRect(
-                           borderRadius: BorderRadius.circular(10),
-                           child: ClipPath(
-                             clipper: PointsClipper(),
-                             child: Container(
-                               decoration: BoxDecoration(
-                                 color: const Color(0xffEDF0F3),
+                 child: Screenshot(
+                     controller: screenShopController,
+                     child:Container(
+                       color: Theme.of(context).scaffoldBackgroundColor,
+                       child: Stack(
+                         children: [
+                           Align(
+                             alignment: Alignment.center,
+                             child: Padding(
+                               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 50),
+                               child: ClipRRect(
                                  borderRadius: BorderRadius.circular(10),
-                                 boxShadow: [
-                                   BoxShadow(
-                                       color: Colors.black.withOpacity(0.15),
-                                       offset: const Offset(0, 0),
-                                       spreadRadius: 2,
-                                       blurRadius: 2)
-                                 ],
-                               ),
-                               padding: const EdgeInsets.symmetric(
-                                   horizontal: 8, vertical: 12),
-                               child: Column(
-                                 mainAxisSize: MainAxisSize.min,
-                                 children: [
-                                   Align(
-                                     alignment: Alignment.topLeft,
-                                     child: Container(
-                                       padding: const EdgeInsets.symmetric(vertical: 8),
-                                       margin: const EdgeInsets.symmetric(
-                                           vertical: 4, horizontal: 0),
-                                       decoration: BoxDecoration(
-                                           borderRadius: BorderRadius.circular(15),
-                                           color: Colors.transparent,
-                                           border: Border.all(
-                                             color: const Color(0xffA90641),
-                                           )),
-                                       width: 130,
-                                       height: 33,
-                                       alignment: Alignment.center,
-                                       child: Text(
-                                         "Invitation Card",
-                                         style: CustomTextStyle().textStyle(
-                                             14, const Color(0xffA90641),
-                                             fontWeight: FontWeight.w500),
-                                         textScaleFactor: 1.0,
-                                       ),
+                                 child: ClipPath(
+                                   clipper: PointsClipper(),
+                                   child: Container(
+                                     decoration: BoxDecoration(
+                                       color: const Color(0xffEDF0F3),
+                                       borderRadius: BorderRadius.circular(10),
+                                       boxShadow: [
+                                         BoxShadow(
+                                             color: Colors.black.withOpacity(0.15),
+                                             offset: const Offset(0, 0),
+                                             spreadRadius: 2,
+                                             blurRadius: 2)
+                                       ],
                                      ),
-                                   ),
-                                   Align(
-                                     alignment: Alignment.topLeft,
+                                     padding: const EdgeInsets.symmetric(
+                                         horizontal: 8, vertical: 12),
                                      child: Column(
                                        mainAxisSize: MainAxisSize.min,
-                                       crossAxisAlignment: CrossAxisAlignment.start,
                                        children: [
-                                         const Gap(30),
-                                         Row(
-                                           children: [
-                                             Text(
-                                               widget.document["welcome_sentence"],
-                                               style: CustomTextStyle().textStyle(
-                                                   18, Colors.black,
-                                                   fontWeight: FontWeight.w500),
-                                             ),
-                                             const Gap(3),
-                                             Text(
-                                               widget.document["to"],
-                                               style: CustomTextStyle().textStyle(
-                                                   18, Colors.black,
-                                                   fontWeight: FontWeight.w500),
-                                             ),
-                                           ],
-                                         ),
-                                         const Gap(24),
-                                         Text(
-                                           widget.document["content"],
-                                           style: CustomTextStyle()
-                                               .textStyle(16, Colors.black),
-                                         ),
-                                         const Gap(24),
-                                         Padding(
-                                           padding:
-                                           const EdgeInsets.symmetric(vertical: 24),
-                                           child: Align(
+                                         Align(
+                                           alignment: Alignment.topLeft,
+                                           child: Container(
+                                             padding: const EdgeInsets.symmetric(vertical: 8),
+                                             margin: const EdgeInsets.symmetric(
+                                                 vertical: 4, horizontal: 0),
+                                             decoration: BoxDecoration(
+                                                 borderRadius: BorderRadius.circular(15),
+                                                 color: Colors.transparent,
+                                                 border: Border.all(
+                                                   color: const Color(0xffA90641),
+                                                 )),
+                                             width: 130,
+                                             height: 33,
                                              alignment: Alignment.center,
-                                             child: Row(
-                                               mainAxisSize: MainAxisSize.min,
-                                               crossAxisAlignment:
-                                               CrossAxisAlignment.center,
-                                               mainAxisAlignment:
-                                               MainAxisAlignment.center,
-                                               children: [
-                                                 Column(
-                                                   mainAxisAlignment:
-                                                   MainAxisAlignment.center,
-                                                   crossAxisAlignment:
-                                                   CrossAxisAlignment.center,
-                                                   mainAxisSize: MainAxisSize.min,
-                                                   children: [
-                                                     const Icon(
-                                                       MdiIcons.mapMarkerCheck,
-                                                       color: Color(0xffA90641),
-                                                       size: 30,
-                                                     ),
-                                                     Text(
-                                                       widget.document["location"],
-                                                       style:
-                                                       CustomTextStyle().textStyle(
-                                                         14,
-                                                         const Color(0xff7A7A7A),
-                                                       ),
-                                                     )
-                                                   ],
-                                                 ),
-                                                 Container(
-                                                   margin: const EdgeInsets.symmetric(
-                                                       horizontal: 12),
-                                                   height: 35,
-                                                   width: 2,
-                                                   decoration: BoxDecoration(
-                                                     borderRadius:
-                                                     BorderRadius.circular(5),
-                                                     color: const Color(0xffD1D1D1),
-                                                   ),
-                                                 ),
-                                                 Column(
-                                                   mainAxisAlignment:
-                                                   MainAxisAlignment.center,
-                                                   crossAxisAlignment:
-                                                   CrossAxisAlignment.center,
-                                                   mainAxisSize: MainAxisSize.min,
-                                                   children: [
-                                                     const Icon(
-                                                       MdiIcons.calendarCheck,
-                                                       color: Color(0xffB9D800),
-                                                       size: 30,
-                                                     ),
-                                                     Text(
-                                                       Jiffy(date).yMMMd,
-                                                       style:
-                                                       CustomTextStyle().textStyle(
-                                                         14,
-                                                         const Color(0xff7A7A7A),
-                                                       ),
-                                                     )
-                                                   ],
-                                                 )
-                                               ],
+                                             child: Text(
+                                               "Invitation Card",
+                                               style: CustomTextStyle().textStyle(
+                                                   14, const Color(0xffA90641),
+                                                   fontWeight: FontWeight.w500),
+                                               textScaleFactor: 1.0,
                                              ),
                                            ),
                                          ),
-                                         const Gap(24),
-                                         Text(
-                                           widget.document["regards"],
-                                           style: CustomTextStyle()
-                                               .textStyle(16, Colors.black),
-                                         ),
-                                         const Gap(32),
+                                         Align(
+                                           alignment: Alignment.topLeft,
+                                           child: Column(
+                                             mainAxisSize: MainAxisSize.min,
+                                             crossAxisAlignment: CrossAxisAlignment.start,
+                                             children: [
+                                               const Gap(30),
+                                               Row(
+                                                 children: [
+                                                   Text(
+                                                     widget.document["welcome_sentence"],
+                                                     style: CustomTextStyle().textStyle(
+                                                         18, Colors.black,
+                                                         fontWeight: FontWeight.w500),
+                                                   ),
+                                                   const Gap(3),
+                                                   Text(
+                                                     widget.document["to"],
+                                                     style: CustomTextStyle().textStyle(
+                                                         18, Colors.black,
+                                                         fontWeight: FontWeight.w500),
+                                                   ),
+                                                 ],
+                                               ),
+                                               const Gap(24),
+                                               Text(
+                                                 widget.document["content"],
+                                                 style: CustomTextStyle()
+                                                     .textStyle(16, Colors.black),
+                                               ),
+                                               const Gap(24),
+                                               Padding(
+                                                 padding:
+                                                 const EdgeInsets.symmetric(vertical: 24),
+                                                 child: Align(
+                                                   alignment: Alignment.center,
+                                                   child: Row(
+                                                     mainAxisSize: MainAxisSize.min,
+                                                     crossAxisAlignment:
+                                                     CrossAxisAlignment.center,
+                                                     mainAxisAlignment:
+                                                     MainAxisAlignment.center,
+                                                     children: [
+                                                       Column(
+                                                         mainAxisAlignment:
+                                                         MainAxisAlignment.center,
+                                                         crossAxisAlignment:
+                                                         CrossAxisAlignment.center,
+                                                         mainAxisSize: MainAxisSize.min,
+                                                         children: [
+                                                           const Icon(
+                                                             MdiIcons.mapMarkerCheck,
+                                                             color: Color(0xffA90641),
+                                                             size: 30,
+                                                           ),
+                                                           Text(
+                                                             widget.document["location"],
+                                                             style:
+                                                             CustomTextStyle().textStyle(
+                                                               14,
+                                                               const Color(0xff7A7A7A),
+                                                             ),
+                                                           )
+                                                         ],
+                                                       ),
+                                                       Container(
+                                                         margin: const EdgeInsets.symmetric(
+                                                             horizontal: 12),
+                                                         height: 35,
+                                                         width: 2,
+                                                         decoration: BoxDecoration(
+                                                           borderRadius:
+                                                           BorderRadius.circular(5),
+                                                           color: const Color(0xffD1D1D1),
+                                                         ),
+                                                       ),
+                                                       Column(
+                                                         mainAxisAlignment:
+                                                         MainAxisAlignment.center,
+                                                         crossAxisAlignment:
+                                                         CrossAxisAlignment.center,
+                                                         mainAxisSize: MainAxisSize.min,
+                                                         children: [
+                                                           const Icon(
+                                                             MdiIcons.calendarCheck,
+                                                             color: Color(0xffB9D800),
+                                                             size: 30,
+                                                           ),
+                                                           Text(
+                                                             Jiffy(date).yMMMd,
+                                                             style:
+                                                             CustomTextStyle().textStyle(
+                                                               14,
+                                                               const Color(0xff7A7A7A),
+                                                             ),
+                                                           )
+                                                         ],
+                                                       )
+                                                     ],
+                                                   ),
+                                                 ),
+                                               ),
+                                               const Gap(24),
+                                               Text(
+                                                 widget.document["regards"],
+                                                 style: CustomTextStyle()
+                                                     .textStyle(16, Colors.black),
+                                               ),
+                                               const Gap(32),
+                                             ],
+                                           ),
+                                         )
                                        ],
                                      ),
-                                   )
-                                 ],
+                                   ),
+                                 ),
                                ),
                              ),
                            ),
-                         ),
-                       ),
-                     ),
-                     Hero(
-                       tag: widget.document.id,
-                       child: Align(
-                         alignment: Alignment.center,
-                         child: Transform.translate(
-                           offset: const Offset(110, 150),
-                           child: Image.asset(
-                             widget.defaultImagePath,
-                             width: 300,
-                             height: 260,
-                             fit: BoxFit.cover,
+                           Hero(
+                             tag: widget.document.id,
+                             child: Align(
+                               alignment: Alignment.center,
+                               child: Transform.translate(
+                                 offset: const Offset(110, 150),
+                                 child: Image.asset(
+                                   widget.defaultImagePath,
+                                   width: 300,
+                                   height: 260,
+                                   fit: BoxFit.cover,
+                                 ),
+                               ),
+                             ),
                            ),
-                         ),
+                         ],
                        ),
-                     ),
-                   ],
+                     )
                  ),
-               ),
              ),
+
              Align(alignment: Alignment.bottomCenter,child: Padding(
                padding: const EdgeInsets.symmetric(vertical: 42,horizontal: 12),
                child:InkWell(
