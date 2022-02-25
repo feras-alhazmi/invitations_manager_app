@@ -6,7 +6,9 @@ class InvitationCardPreview extends StatefulWidget {
   final String defaultImagePath;
   final Map<String, dynamic> invitation;
 
-  const InvitationCardPreview(this.defaultImagePath,this.invitation, {Key? key}) : super(key: key);
+  const InvitationCardPreview(this.defaultImagePath, this.invitation,
+      {Key? key})
+      : super(key: key);
 
   @override
   _InvitationCardPreviewState createState() => _InvitationCardPreviewState();
@@ -284,8 +286,8 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                           ),
                           onTap: () {
                             if (index == 0) {
-                              Utils.setSystemUI(const Color(0xff19879C), Brightness.light);
-
+                              Utils.setSystemUI(
+                                  const Color(0xff19879C), Brightness.light);
 
                               Navigator.pop(context);
                             } else {
@@ -341,7 +343,9 @@ class _InvitationCardPreviewState extends State<InvitationCardPreview> {
                                       Timer(
                                         const Duration(seconds: 1),
                                         () {
-                                          Utils.setSystemUI(const Color(0xff19879C), Brightness.light);
+                                          Utils.setSystemUI(
+                                              const Color(0xff19879C),
+                                              Brightness.light);
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) =>

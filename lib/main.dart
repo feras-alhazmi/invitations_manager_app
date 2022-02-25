@@ -8,4 +8,3 @@ Future<void> main() async {
 
   initApp();
 }
-

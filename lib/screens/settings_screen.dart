@@ -3,7 +3,10 @@ import '../exports.dart';
 class SettingsScreen extends StatefulWidget {
   final int currentAvatarIndex;
   final int currentImageIndex;
-  const SettingsScreen(this.currentAvatarIndex,this.currentImageIndex, {Key? key}) : super(key: key);
+
+  const SettingsScreen(this.currentAvatarIndex, this.currentImageIndex,
+      {Key? key})
+      : super(key: key);
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
@@ -16,7 +19,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     "assets/images/dash_dev-2.png",
   ];
   late int avatarTemp;
-  late int cardAvatarTemp ;
+  late int cardAvatarTemp;
 
   @override
   void initState() {
@@ -24,6 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     cardAvatarTemp = widget.currentImageIndex;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -105,8 +109,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     )),
                                 child: Image.asset(
                                   imagesPath[index],
-                                  width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
-                                  height: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
+                                  width: (MediaQuery.of(context).size.width -
+                                          (MediaQuery.of(context).size.width *
+                                              0.10)) *
+                                      0.265,
+                                  height: (MediaQuery.of(context).size.width -
+                                          (MediaQuery.of(context).size.width *
+                                              0.10)) *
+                                      0.265,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -162,8 +172,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     )),
                                 child: Image.asset(
                                   imagesPath[index],
-                                  width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
-                                  height: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width*0.10)) * 0.265,
+                                  width: (MediaQuery.of(context).size.width -
+                                          (MediaQuery.of(context).size.width *
+                                              0.10)) *
+                                      0.265,
+                                  height: (MediaQuery.of(context).size.width -
+                                          (MediaQuery.of(context).size.width *
+                                              0.10)) *
+                                      0.265,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -180,35 +196,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 12),
-                    child: InkWell(
-                      child: Container(
-                        height: 40,
-
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.green.shade800,
-                        ),
-                        alignment: Alignment.center,
-                        child: Text("Save Changes",
-                            style: CustomTextStyle().textStyle(16, Colors.white,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                      onTap: () async {
-                        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-                        setState(() {
-                          sharedPreferences.setInt("avatar_index", avatarTemp);
-                          sharedPreferences.setInt("image_index", cardAvatarTemp);
-                        });
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  )
-                )
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 12),
+                        child: InkWell(
+                          child: Container(
+                            height: 40,
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.green.shade800,
+                            ),
+                            alignment: Alignment.center,
+                            child: Text("Save Changes",
+                                style: CustomTextStyle().textStyle(
+                                    16, Colors.white,
+                                    fontWeight: FontWeight.w500)),
+                          ),
+                          onTap: () async {
+                            SharedPreferences sharedPreferences =
+                                await SharedPreferences.getInstance();
+                            setState(() {
+                              sharedPreferences.setInt(
+                                  "avatar_index", avatarTemp);
+                              sharedPreferences.setInt(
+                                  "image_index", cardAvatarTemp);
+                            });
+                            Navigator.of(context).pop();
+                          },
+                        )))
               ],
             )),
       ),

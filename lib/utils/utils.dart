@@ -1,11 +1,9 @@
 import '../exports.dart';
 
-class Utils{
-
-
-  static setSystemUI(Color sysNavBarColor,Brightness sysNavBarIconBrightness){
+class Utils {
+  static setSystemUI(Color sysNavBarColor, Brightness sysNavBarIconBrightness) {
     SystemChrome.setSystemUIOverlayStyle(
-       SystemUiOverlayStyle(
+      SystemUiOverlayStyle(
         systemNavigationBarColor: sysNavBarColor,
         systemNavigationBarIconBrightness: sysNavBarIconBrightness,
         statusBarColor: Colors.transparent,
@@ -14,15 +12,15 @@ class Utils{
     );
   }
 
-
-  static Future<String> saveImage( image) async {
+  static Future<String> saveImage(image) async {
     await [Permission.storage].request();
-    final dateSaved = DateTime.now().toIso8601String().replaceAll('.', '-').replaceAll(':', '-');
+    final dateSaved = DateTime.now()
+        .toIso8601String()
+        .replaceAll('.', '-')
+        .replaceAll(':', '-');
     final name = "InvitationCard_$dateSaved";
 
-    final result = await ImageGallerySaver.saveImage(image,name: name);
+    final result = await ImageGallerySaver.saveImage(image, name: name);
     return result["filePath"];
   }
-
-
 }
