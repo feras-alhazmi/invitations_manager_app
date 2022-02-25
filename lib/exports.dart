@@ -16,8 +16,6 @@ export 'package:screenshot/screenshot.dart';
 export 'package:smooth_page_indicator/smooth_page_indicator.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
-
-
 export 'models/app_theme.dart';
 export 'package:dash_invitation_app/init_app.dart';
 export 'screens/Invitation_screen.dart';
